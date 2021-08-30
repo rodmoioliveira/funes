@@ -1,0 +1,31 @@
+[package]
+name = "funes"
+version = "0.1.0"
+authors = ["Rodolfo Mói de Oliveira <rodmoi.oliveira@gmail.com>"]
+edition = "2018"
+readme = "README.md"
+repository = "https://github.com/rodmoioliveira/funes"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+actix-files = "0.6.0-beta.6"
+actix-web = "4.0.0-beta.7"
+actix-test = "0.1.0-beta.3"
+actix-rt = "2.2.0"
+derive_more = "0.99.14"
+dotenv = "0.15.0"
+env_logger = "0.8.4"
+lazy_static = "1.4.0"
+log = "0.4.14"
+mime = "0.3.16"
+ordered-float = "2.5.1"
+reqwest = { version = "0.11.4", features = ["json"] }
+serde = { version = "1.0.126", features = ["derive"] }
+serde_json = "1.0.64"
+
+[dev-dependencies]
+criterion = { version = "0.3.4", features = ["html_reports"] }
+
+[[bench]]
+name = "my_benchmark"
+harness = false
