@@ -28,7 +28,7 @@ pub async fn get(
             );
             statics::ENVS.allow_externals_calls()?;
             let url = utils::url(&api, &qs);
-            let res = fetch::get(&client, &url, req.headers().clone())
+            let res = fetch::get(&client, &url, req.headers())
                 .await
                 .unwrap_or(serde_json::json!({}));
             let file_content = serde_json::to_string(&res).unwrap_or("".to_string());
@@ -63,7 +63,7 @@ pub async fn post(
             );
             statics::ENVS.allow_externals_calls()?;
             let url = utils::url(&api, &qs);
-            let res = fetch::post(&client, &url, &payload, req.headers().clone())
+            let res = fetch::post(&client, &url, &payload, req.headers())
                 .await
                 .unwrap_or(serde_json::json!({}));
             let file_content = serde_json::to_string(&res).unwrap_or("".to_string());

@@ -7,7 +7,7 @@ use crate::{error, utils};
 pub async fn get(
     client: &web::Data<Client>,
     url: &String,
-    headers: http::HeaderMap,
+    headers: &http::HeaderMap,
 ) -> Result<serde_json::Value, error::MyError> {
     debug!("External get to: {}", url);
     Ok(client
@@ -25,7 +25,7 @@ pub async fn post(
     client: &web::Data<Client>,
     url: &String,
     payload: &serde_json::Value,
-    headers: http::HeaderMap,
+    headers: &http::HeaderMap,
 ) -> Result<serde_json::Value, error::MyError> {
     debug!("External post to: {}", url);
     Ok(client

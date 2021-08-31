@@ -16,7 +16,7 @@ pub fn check_mocks_dir() -> std::io::Result<()> {
     Ok(())
 }
 
-pub fn convert_headers(headers: actix_web::http::HeaderMap) -> reqwest::header::HeaderMap {
+pub fn convert_headers(headers: &actix_web::http::HeaderMap) -> reqwest::header::HeaderMap {
     headers.iter().filter(|h| h.0 != "host").fold(
         reqwest::header::HeaderMap::new(),
         |mut acc, h| {
