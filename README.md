@@ -47,8 +47,9 @@ cargo run
 
     Finished dev [unoptimized + debuginfo] target(s) in 0.26s
      Running `target/debug/funes`
-[2021-08-30T22:59:45Z INFO  funes::server] Server running in 0.0.0.0:8080
-[2021-08-30T22:59:45Z WARN  funes::server] Calling externals apis is allowed? true
+[2021-08-31T23:21:33Z INFO  funes::server] Server running in 0.0.0.0:8080
+[2021-08-31T23:21:33Z INFO  funes::server] Mocks directory is ./mocks
+[2021-08-31T23:21:33Z INFO  funes::server] Calling externals apis is allowed? true
 ```
 
 To mock the requests of an API, call the endpoint `http://localhost:8080/{API}`.
@@ -84,6 +85,16 @@ These are the default routes of a funes app:
 - `localhost:8080/mocks` - List of all saved mocks
 - `localhost:8080/health`
 - `localhost:8080/resource-status`
+
+## Default Envs
+
+```sh
+RUST_ALLOW_EXTERNALS=true
+RUST_APP=funes
+RUST_HOST=0.0.0.0:8080
+RUST_LOG=funes,actix_web=info
+RUST_MOCK_DIR="./mocks"
+```
 
 ## Examples
 

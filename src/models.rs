@@ -15,6 +15,7 @@ pub struct Envs {
     pub h_server: String,
     pub h_user_agent: String,
     pub localhost: String,
+    pub mock_dir: String,
 }
 
 impl Envs {

@@ -13,5 +13,3 @@ lazy_static! {
         .build()
         .unwrap();
 }
-
-pub static MOCK_DIR: &str = "./mocks";

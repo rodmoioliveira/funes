@@ -10,8 +10,8 @@ use log::debug;
 use crate::{models, statics};
 
 pub fn check_mocks_dir() -> std::io::Result<()> {
-    if !Path::new(statics::MOCK_DIR).exists() {
-        fs::create_dir(statics::MOCK_DIR)?;
+    if !Path::new(&statics::ENVS.mock_dir).exists() {
+        fs::create_dir(&statics::ENVS.mock_dir)?;
     }
     Ok(())
 }
@@ -35,11 +35,16 @@ pub fn envs() -> models::Envs {
         localhost: env::var("RUST_HOST").unwrap_or("0.0.0.0:8080".to_string()),
         h_user_agent: env::var("RUST_APP").unwrap_or("funes".to_string()),
         h_server: env::var("RUST_APP").unwrap_or("funes".to_string()),
+        mock_dir: env::var("RUST_MOCK_DIR").unwrap_or("./mocks".to_string()),
     }
 }
 
 pub fn filename(resource: &str) -> String {
-    format!("{}/{}.json", statics::MOCK_DIR, calculate_hash(&resource))
+    format!(
+        "{}/{}.json",
+        &statics::ENVS.mock_dir,
+        calculate_hash(&resource)
+    )
 }
 
 pub fn hash_separator(qs: &str) -> &str {
