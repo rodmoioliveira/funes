@@ -9,26 +9,21 @@ use crate::{handlers, statics, utils};
 pub async fn new() -> std::io::Result<()> {
     dotenv().ok();
     env_logger::init();
-
-    let envs = utils::envs();
-    let localhost = envs.localhost.clone();
-    let user_agent = envs.user_agent.clone();
-
     utils::check_mocks_dir()?;
 
+    let localhost = statics::ENVS.localhost.clone();
     info!("Server running in {}", localhost);
     warn!(
         "Calling externals apis is allowed? {:#?}",
-        envs.allow_externals
+        statics::ENVS.allow_externals
     );
 
     HttpServer::new(move || {
         App::new()
             .app_data(web::Data::new(statics::CLIENT.clone()))
-            .app_data(web::Data::new(envs.clone()))
             .wrap(
                 middleware::DefaultHeaders::new()
-                    .header(header::USER_AGENT, user_agent.clone())
+                    .header(header::SERVER, statics::ENVS.h_server.clone())
                     .header(header::ACCEPT_CHARSET, mime::UTF_8.to_string())
                     .header(
                         header::CONTENT_TYPE,

@@ -2,12 +2,11 @@ use actix_web::{web, HttpRequest, HttpResponse, Responder};
 use log::debug;
 use reqwest::Client;
 
-use crate::{error, fetch, models, utils};
+use crate::{error, fetch, models, statics, utils};
 
 pub async fn get(
     api: web::Path<String>,
     client: web::Data<Client>,
-    envs: web::Data<models::Envs>,
     req: HttpRequest,
 ) -> Result<HttpResponse, error::MyError> {
     let api = api.into_inner();
@@ -27,7 +26,7 @@ pub async fn get(
                 &api,
                 utils::filename(&resource),
             );
-            envs.allow_externals_calls()?;
+            statics::ENVS.allow_externals_calls()?;
             let url = utils::url(&api, &qs);
             let res = fetch::get(&client, &url, req.headers().clone())
                 .await
@@ -42,7 +41,6 @@ pub async fn get(
 pub async fn post(
     api: web::Path<String>,
     client: web::Data<Client>,
-    envs: web::Data<models::Envs>,
     payload: web::Json<serde_json::Value>,
     req: HttpRequest,
 ) -> Result<HttpResponse, error::MyError> {
@@ -63,7 +61,7 @@ pub async fn post(
                 utils::filename(&resource),
                 &payload,
             );
-            envs.allow_externals_calls()?;
+            statics::ENVS.allow_externals_calls()?;
             let url = utils::url(&api, &qs);
             let res = fetch::post(&client, &url, &payload, req.headers().clone())
                 .await
