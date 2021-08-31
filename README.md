@@ -75,6 +75,13 @@ curl http://localhost:8080/pokeapi.co/api/v2/pokemon/1
 [2021-08-30T23:16:50Z INFO  actix_web::middleware::logger] 200 0.000206 GET /pokeapi.co/api/v2/pokemon/1 HTTP/1.1 curl/7.64.1 bytes:199394
 ```
 
+## Examples
+
+All examples can be found in the [examples](examples/) folder:
+
+- [minimal](examples/minimal/)
+- [docker](examples/docker/)
+
 ## Benchmarks
 
 Funes is really fast! Take a look:
