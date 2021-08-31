@@ -1,6 +1,20 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.1](https://github.com/rodmoioliveira/funes/compare/0.1.0...0.1.1) - 2021-08-31
+
+[d2cda58](d2cda5867210f84aa84b6e943d23ea3016b219f4)...[13f8f4c](13f8f4cd2218b2653072567df1a1f69e02e84d2b)
+
+### CI
+
+- Update ([9b64399](9b643997dcac1296d02b6ec4e6ab3e8fc304ff7a))
+
+### Miscellaneous Tasks
+
+- Add README badges ([deebf84](deebf845269c25719164cbb31250f2f323db2991))
+- Add Borges quote ([b937823](b937823af3adfc7589dd03ec5d1c90adb882dd75))
+- Improve documentation ([13f8f4c](13f8f4cd2218b2653072567df1a1f69e02e84d2b))
+
 ## [0.1.0](https://github.com/rodmoioliveira/funes/compare/...0.1.0) - 2021-08-30
 
 ### Miscellaneous Tasks
