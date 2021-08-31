@@ -1,7 +1,22 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [unreleased]
+## [0.1.3](https://github.com/rodmoioliveira/funes/compare/0.1.2...0.1.3) - 2021-08-31
+
+[be52bc1](https://github.com/rodmoioliveira/funes/commit/be52bc18ff14306fd5ece0947a7f1302e902fc41)...[5e1c60a](https://github.com/rodmoioliveira/funes/commit/5e1c60a65e9e53b83ca93b35efaa2ca86da8dc83)
+
+### Features
+
+- Add docker example ([5e1c60a](https://github.com/rodmoioliveira/funes/commit/5e1c60a65e9e53b83ca93b35efaa2ca86da8dc83))
+
+## [0.1.2](https://github.com/rodmoioliveira/funes/compare/0.1.1...0.1.2) - 2021-08-31
+
+[13f8f4c](https://github.com/rodmoioliveira/funes/commit/13f8f4cd2218b2653072567df1a1f69e02e84d2b)...[be52bc1](https://github.com/rodmoioliveira/funes/commit/be52bc18ff14306fd5ece0947a7f1302e902fc41)
+
+### Bug Fixes
+
+- Fix CHANGELOG links ([05779c0](https://github.com/rodmoioliveira/funes/commit/05779c026f1a86ebda90b7c6f036dc9aaf6cbe0b))
+- Fix headers for client and server ([be52bc1](https://github.com/rodmoioliveira/funes/commit/be52bc18ff14306fd5ece0947a7f1302e902fc41))
 
 ### Miscellaneous Tasks
 
