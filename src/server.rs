@@ -33,7 +33,6 @@ pub async fn new() -> std::io::Result<()> {
             .wrap(middleware::Compress::default())
             .wrap(middleware::Logger::new("%s %T %r %{User-Agent}i bytes:%b"))
             .service(Files::new("/mocks", format!("{}/", statics::MOCK_DIR)).show_files_listing())
-            .service(web::resource("/status").route(web::get().to(handlers::status)))
             .service(web::resource("/health").route(web::get().to(handlers::ok)))
             .service(web::resource("/resource-status").route(web::get().to(handlers::ok)))
             .service(

@@ -75,6 +75,15 @@ curl http://localhost:8080/pokeapi.co/api/v2/pokemon/1
 [2021-08-30T23:16:50Z INFO  actix_web::middleware::logger] 200 0.000206 GET /pokeapi.co/api/v2/pokemon/1 HTTP/1.1 curl/7.64.1 bytes:199394
 ```
 
+## Routes
+
+These are the default routes of a funes app:
+
+- `localhost:8080/{api_to_mock}` - Like `localhost:8080/pokeapi.co/api/v2/pokemon/1`
+- `localhost:8080/mocks` - List of all saved mocks
+- `localhost:8080/health`
+- `localhost:8080/resource-status`
+
 ## Examples
 
 All examples can be found in the [examples](examples/) folder:

@@ -77,10 +77,6 @@ pub async fn ok() -> Result<impl Responder, error::MyError> {
     Ok(HttpResponse::Ok().body("Ok".to_string()))
 }
 
-pub async fn status(envs: web::Data<models::Envs>) -> Result<impl Responder, error::MyError> {
-    Ok(HttpResponse::Ok().json(&envs))
-}
-
 #[cfg(test)]
 mod tests {
     use actix_web::{http, App};
