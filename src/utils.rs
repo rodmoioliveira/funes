@@ -33,7 +33,8 @@ pub fn envs() -> models::Envs {
             .parse::<bool>()
             .unwrap(),
         localhost: env::var("RUST_HOST").unwrap_or("0.0.0.0:8080".to_string()),
-        user_agent: env::var("RUST_AGENT").unwrap_or("funes".to_string()),
+        h_user_agent: env::var("RUST_APP").unwrap_or("funes".to_string()),
+        h_server: env::var("RUST_APP").unwrap_or("funes".to_string()),
     }
 }
 

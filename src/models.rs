@@ -11,9 +11,10 @@ use crate::error;
 
 #[derive(Serialize, Clone, Debug)]
 pub struct Envs {
-    pub localhost: String,
-    pub user_agent: String,
     pub allow_externals: bool,
+    pub h_server: String,
+    pub h_user_agent: String,
+    pub localhost: String,
 }
 
 impl Envs {
