@@ -419,9 +419,9 @@ dependencies = [
 
 [[package]]
 name = "cc"
-version = "1.0.69"
+version = "1.0.70"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e70cc2f62c6ce1868963827bd677764c62d07c3d9a3e1fb1177ee1a9ab199eb2"
+checksum = "d26a6ce4b6a484fa3edb70f7efa6fc430fd2b87285fe8b84304fd0936faa0dc0"
 dependencies = [
  "jobserver",
 ]
@@ -518,6 +518,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "212d0f5754cb6769937f4501cc0e67f4f4483c8d2c3e1e922ee9edbe4ab4c7c0"
 
 [[package]]
+name = "docker"
+version = "0.1.0"
+dependencies = [
+ "actix-web",
+ "funes",
+]
+
+[[package]]
 name = "dotenv"
 version = "0.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -597,7 +605,7 @@ dependencies = [
 [[package]]
 name = "funes"
 version = "0.1.0"
-source = "git+https://github.com/rodmoioliveira/funes?branch=main#846eb1735d149ad16309d586758696ed71ae2803"
+source = "git+https://github.com/rodmoioliveira/funes?branch=main#be52bc18ff14306fd5ece0947a7f1302e902fc41"
 dependencies = [
  "actix-files",
  "actix-rt",
@@ -1457,14 +1465,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e51e73328dc4ac0c7ccbda3a494dfa03df1de2f46018127f60c693f2648455b0"
 dependencies = [
  "libc",
-]
-
-[[package]]
-name = "simple"
-version = "0.1.0"
-dependencies = [
- "actix-web",
- "funes",
 ]
 
 [[package]]
