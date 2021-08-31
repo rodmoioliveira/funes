@@ -4,6 +4,7 @@
 
 # Funes
 
+![pipeline workflow](https://github.com/rodmoioliveira/funes/actions/workflows/rust.yml/badge.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Changelog](https://camo.githubusercontent.com/4d89fc2186d69bdbb2c6ea6cb54ab16915be5e5e0b63a393e87a75741f1baa8c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6368616e67656c6f672d4348414e47454c4f472e6d642d253233453035373335)](CHANGELOG.md)
 [![Code of Conduct](https://img.shields.io/badge/code-of%20conduct-blue.svg)](CODE_OF_CONDUCT.md)
@@ -17,7 +18,7 @@ funes is a server to mock API responses. You might use it to:
 Install funes in your `Cargo.toml` alongside your preferable [async
 runtime](https://rust-lang.github.io/async-book/08_ecosystem/00_chapter.html):
 
-```rs
+```toml
 [dependencies]
 actix-web = "4.0.0-beta.8"
 funes = { git = "https://github.com/rodmoioliveira/funes", branch = "main" }
@@ -96,7 +97,9 @@ All examples can be found in the [examples](examples/) folder:
 Funes is really fast! Take a look:
 
 ```sh
+# https://github.com/wg/wrk
 wrk -t2 -c10 -d60s http://localhost:8080/pokeapi.co/api/v2/pokemon/1
+
 Running 1m test @ http://localhost:8080/pokeapi.co/api/v2/pokemon/1
   2 threads and 10 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
