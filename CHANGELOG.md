@@ -1,6 +1,29 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.5](https://github.com/rodmoioliveira/funes/compare/0.1.4...0.1.5) - 2021-09-01
+
+[8706c66](https://github.com/rodmoioliveira/funes/commit/8706c66999af01e87ec29f7b45865cbacb7d3b9d)...[4f844be](https://github.com/rodmoioliveira/funes/commit/4f844be0f64dd4fe252d4c86fea64ea885ab99ea)
+
+### Bug Fixes
+
+- Fix tests ([cdf4ac0](https://github.com/rodmoioliveira/funes/commit/cdf4ac0a6b5526a43e220d3c03f3285a541cdbe9))
+
+### Features
+
+- Create io namespace ([d9b3033](https://github.com/rodmoioliveira/funes/commit/d9b303348475e964d9f9505c2a5610bef9fed444))
+- Rename functions ([71e84a1](https://github.com/rodmoioliveira/funes/commit/71e84a1c4bbf667e0102bf4898ac02be3d551979))
+- Create format namespace ([98cd047](https://github.com/rodmoioliveira/funes/commit/98cd04726480b84af63dae4c76cd0e4b9308b179))
+
+### Miscellaneous Tasks
+
+- Update CHANGELOG ([36119a1](https://github.com/rodmoioliveira/funes/commit/36119a165104804c722d084021f2832fc3428dd1))
+- Rename check_mocks_dir() to mock_dir() ([4f844be](https://github.com/rodmoioliveira/funes/commit/4f844be0f64dd4fe252d4c86fea64ea885ab99ea))
+
+### Testing
+
+- Add tests post_api and get_api ([19e1601](https://github.com/rodmoioliveira/funes/commit/19e16017bbf6fa6c0dd7af0169c104d123fac510))
+
 ## [0.1.4](https://github.com/rodmoioliveira/funes/compare/0.1.3...0.1.4) - 2021-09-01
 
 [5e1c60a](https://github.com/rodmoioliveira/funes/commit/5e1c60a65e9e53b83ca93b35efaa2ca86da8dc83)...[8706c66](https://github.com/rodmoioliveira/funes/commit/8706c66999af01e87ec29f7b45865cbacb7d3b9d)
