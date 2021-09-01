@@ -85,7 +85,7 @@ mod tests {
     use super::*;
 
     fn initial_setup() -> Result<(), error::MyError> {
-        io::check_mocks_dir()?;
+        io::mock_dir()?;
         Ok(())
     }
 

@@ -9,7 +9,7 @@ use crate::{handlers, io, statics};
 pub async fn new() -> std::io::Result<()> {
     dotenv().ok();
     env_logger::init();
-    io::check_mocks_dir()?;
+    io::mock_dir()?;
 
     let localhost = &statics::ENVS.localhost;
     info!("Server running in {}", localhost);

@@ -4,7 +4,7 @@ use log::debug;
 
 use crate::{format, statics};
 
-pub fn check_mocks_dir() -> std::io::Result<()> {
+pub fn mock_dir() -> std::io::Result<()> {
     if !Path::new(&statics::ENVS.mock_dir).exists() {
         fs::create_dir(&statics::ENVS.mock_dir)?;
     }
