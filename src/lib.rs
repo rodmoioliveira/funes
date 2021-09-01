@@ -1,6 +1,7 @@
 pub mod config;
 pub mod error;
 pub mod fetch;
+pub mod format;
 pub mod handlers;
 pub mod io;
 pub mod server;
