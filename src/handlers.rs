@@ -79,7 +79,8 @@ pub async fn ok() -> Result<impl Responder, error::MyError> {
 
 #[cfg(test)]
 mod tests {
-    use actix_web::{http, App};
+    use actix_web::{http, http::header, middleware, web, App};
+    use dotenv::dotenv;
 
     use super::*;
 
@@ -107,5 +108,72 @@ mod tests {
             http::StatusCode::OK,
             "Test /resource-status route."
         );
+    }
+
+    #[actix_rt::test]
+    async fn get_api() {
+        dotenv().ok();
+
+        let srv = actix_test::start(move || {
+            App::new()
+                .app_data(web::Data::new(statics::CLIENT.clone()))
+                .wrap(
+                    middleware::DefaultHeaders::new()
+                        .header(header::SERVER, &statics::ENVS.h_server)
+                        .header(header::ACCEPT_CHARSET, mime::UTF_8.to_string())
+                        .header(header::CONTENT_TYPE, mime::APPLICATION_JSON.to_string()),
+                )
+                .service(
+                    web::resource("/{api:.+}")
+                        .route(web::post().to(post))
+                        .route(web::get().to(get)),
+                )
+        });
+
+        assert!(
+            srv.get("jsonplaceholder.typicode.com/todos/1")
+                .send()
+                .await
+                .unwrap()
+                .status()
+                .is_success(),
+        );
+    }
+
+    #[actix_rt::test]
+    async fn post_api() {
+        dotenv().ok();
+
+        let srv = actix_test::start(move || {
+            App::new()
+                .app_data(web::Data::new(statics::CLIENT.clone()))
+                .wrap(
+                    middleware::DefaultHeaders::new()
+                        .header(header::SERVER, &statics::ENVS.h_server)
+                        .header(header::ACCEPT_CHARSET, mime::UTF_8.to_string())
+                        .header(header::CONTENT_TYPE, mime::APPLICATION_JSON.to_string()),
+                )
+                .service(
+                    web::resource("/{api:.+}")
+                        .route(web::post().to(post))
+                        .route(web::get().to(get)),
+                )
+        });
+
+        let data = r#"{"userId":1,"id":101,"title":"title","body":"body"}"#;
+        let json: serde_json::Value = serde_json::from_str(data).unwrap();
+        let res = srv
+            .post("jsonplaceholder.typicode.com/posts")
+            .insert_header((header::CONTENT_TYPE, "application/json"))
+            .send_json(&json)
+            .await
+            .unwrap()
+            .body()
+            .limit(20_000_000)
+            .await
+            .unwrap();
+        let res_json: serde_json::Value =
+            serde_json::from_str(&String::from_utf8(res.to_vec()).unwrap()).unwrap();
+        assert_eq!(res_json, json);
     }
 }

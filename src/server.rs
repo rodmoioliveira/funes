@@ -26,10 +26,7 @@ pub async fn new() -> std::io::Result<()> {
                 middleware::DefaultHeaders::new()
                     .header(header::SERVER, &statics::ENVS.h_server)
                     .header(header::ACCEPT_CHARSET, mime::UTF_8.to_string())
-                    .header(
-                        header::CONTENT_TYPE,
-                        mime::APPLICATION_JAVASCRIPT.to_string(),
-                    ),
+                    .header(header::CONTENT_TYPE, mime::APPLICATION_JSON.to_string()),
             )
             .wrap(middleware::Compress::default())
             .wrap(middleware::Logger::new("%s %T %r %{User-Agent}i bytes:%b"))
