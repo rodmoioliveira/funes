@@ -1,33 +1,9 @@
 use std::{
     collections::hash_map::DefaultHasher,
-    env, fs,
     hash::{Hash, Hasher},
-    path::Path,
 };
 
-use log::debug;
-
-use crate::{models, statics};
-
-pub fn check_mocks_dir() -> std::io::Result<()> {
-    if !Path::new(&statics::ENVS.mock_dir).exists() {
-        fs::create_dir(&statics::ENVS.mock_dir)?;
-    }
-    Ok(())
-}
-
-pub fn envs() -> models::Envs {
-    models::Envs {
-        allow_externals: env::var("RUST_ALLOW_EXTERNALS")
-            .unwrap_or("true".to_string())
-            .parse::<bool>()
-            .unwrap(),
-        localhost: env::var("RUST_HOST").unwrap_or("0.0.0.0:8080".to_string()),
-        h_user_agent: env::var("RUST_APP").unwrap_or("funes".to_string()),
-        h_server: env::var("RUST_APP").unwrap_or("funes".to_string()),
-        mock_dir: env::var("RUST_MOCK_DIR").unwrap_or("./mocks".to_string()),
-    }
-}
+use crate::statics;
 
 pub fn filename(resource: &str) -> String {
     format!(
@@ -37,51 +13,73 @@ pub fn filename(resource: &str) -> String {
     )
 }
 
-pub fn hash_separator(qs: &str) -> &str {
+fn sep_hash(qs: &str) -> &str {
     match qs == "" {
         true => "",
         false => "-",
     }
 }
 
-pub fn qs_separator(qs: &str) -> &str {
+fn sep_qs(qs: &str) -> &str {
     match qs == "" {
         true => "",
         false => "?",
     }
 }
 
-pub fn read_file(resource: &str) -> Result<String, std::io::Error> {
-    let filename = filename(resource);
-    let file_content = fs::read_to_string(filename)?;
-    Ok(file_content)
-}
-
 pub fn resource(api: &str, qs: &str, hash: &str) -> String {
-    let resource = format!(
-        "{}{}{}{}{}",
-        api,
-        qs_separator(qs),
-        qs,
-        hash_separator(hash),
-        hash
-    );
+    let resource = format!("{}{}{}{}{}", api, sep_qs(qs), qs, sep_hash(hash), hash);
     resource
 }
 
 pub fn url(api: &str, qs: &str) -> String {
-    format!("http://{}{}{}", &api, qs_separator(qs), qs)
-}
-
-pub fn write_file(resource: &str, file_content: String) -> Result<(), std::io::Error> {
-    let filename = filename(resource);
-
-    debug!("Write filename: {}", filename);
-    Ok(fs::write(filename, file_content)?)
+    format!("http://{}{}{}", &api, sep_qs(qs), qs)
 }
 
 pub fn calculate_hash<T: Hash>(t: &T) -> u64 {
     let mut s = DefaultHasher::new();
     t.hash(&mut s);
     s.finish()
+}
+
+#[derive(PartialEq)]
+pub struct HashValue<'a>(pub &'a serde_json::Value);
+
+impl Eq for HashValue<'_> {}
+
+impl Hash for HashValue<'_> {
+    /// Implements the [`Hash`][Hash] trait to
+    /// [`serde_json::Value`][serde_json::Value]
+    fn hash<H: Hasher>(&self, state: &mut H) {
+        use serde_json::Value::*;
+        match self.0 {
+            Null => state.write_u32(3_221_225_473), // chosen randomly
+            Bool(ref b) => b.hash(state),
+            Number(ref n) => {
+                if let Some(x) = n.as_u64() {
+                    x.hash(state);
+                } else if let Some(x) = n.as_i64() {
+                    x.hash(state);
+                } else if let Some(x) = n.as_f64() {
+                    ordered_float::NotNan::new(x).unwrap().hash(state);
+                }
+            }
+            String(ref s) => s.hash(state),
+            Array(ref v) => {
+                for x in v {
+                    HashValue(x).hash(state);
+                }
+            }
+            Object(ref map) => {
+                let mut hash = 0;
+                for (k, v) in map {
+                    let mut item_hasher = DefaultHasher::new();
+                    k.hash(&mut item_hasher);
+                    HashValue(v).hash(&mut item_hasher);
+                    hash ^= item_hasher.finish();
+                }
+                state.write_u64(hash);
+            }
+        }
+    }
 }

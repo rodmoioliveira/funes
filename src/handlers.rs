@@ -2,7 +2,7 @@ use actix_web::{web, HttpRequest, HttpResponse, Responder};
 use log::debug;
 use reqwest::Client;
 
-use crate::{error, fetch, models, statics, utils};
+use crate::{error, fetch, io, statics, utils};
 
 pub async fn get(
     api: web::Path<String>,
@@ -16,7 +16,7 @@ pub async fn get(
 
     let qs = req.query_string();
     let resource = utils::resource(&api, &qs, "");
-    let file_content = utils::read_file(&resource);
+    let file_content = io::read_file(&resource);
 
     match file_content {
         Ok(value) => Ok(HttpResponse::Ok().body(value)),
@@ -32,7 +32,7 @@ pub async fn get(
                 .await
                 .unwrap_or(serde_json::json!({}));
             let file_content = serde_json::to_string(&res).unwrap_or("".to_string());
-            utils::write_file(&resource, file_content)?;
+            io::write_file(&resource, file_content)?;
             Ok(HttpResponse::Created().json(res))
         }
     }
@@ -46,11 +46,11 @@ pub async fn post(
 ) -> Result<HttpResponse, error::MyError> {
     let api = api.into_inner();
     let payload = payload.into_inner();
-    let hash = utils::calculate_hash(&models::HashValue(&payload));
+    let hash = utils::calculate_hash(&utils::HashValue(&payload));
 
     let qs = req.query_string();
     let resource = utils::resource(&api, &qs, &hash.to_string());
-    let file_content = utils::read_file(&resource);
+    let file_content = io::read_file(&resource);
 
     match file_content {
         Ok(value) => Ok(HttpResponse::Ok().body(value)),
@@ -67,7 +67,7 @@ pub async fn post(
                 .await
                 .unwrap_or(serde_json::json!({}));
             let file_content = serde_json::to_string(&res).unwrap_or("".to_string());
-            utils::write_file(&resource, file_content)?;
+            io::write_file(&resource, file_content)?;
             Ok(HttpResponse::Created().json(res))
         }
     }
@@ -85,7 +85,7 @@ mod tests {
     use super::*;
 
     fn initial_setup() -> Result<(), error::MyError> {
-        utils::check_mocks_dir()?;
+        io::check_mocks_dir()?;
         Ok(())
     }
 
