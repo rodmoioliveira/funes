@@ -5,12 +5,17 @@ use std::{
 
 use crate::statics;
 
-pub fn filename(resource: &str) -> String {
-    format!(
-        "{}/{}.json",
-        &statics::ENVS.mock_dir,
-        calculate_hash(&resource)
-    )
+pub fn format_resource(api: &str, qs: &str, hash: &str) -> String {
+    let resource = format!("{}{}{}{}{}", api, sep_qs(qs), qs, sep_hash(hash), hash);
+    resource
+}
+
+pub fn format_filename(resource: &str) -> String {
+    format!("{}/{}.json", &statics::ENVS.mock_dir, hash(&resource))
+}
+
+pub fn format_url(api: &str, qs: &str) -> String {
+    format!("http://{}{}{}", &api, sep_qs(qs), qs)
 }
 
 fn sep_hash(qs: &str) -> &str {
@@ -27,16 +32,7 @@ fn sep_qs(qs: &str) -> &str {
     }
 }
 
-pub fn resource(api: &str, qs: &str, hash: &str) -> String {
-    let resource = format!("{}{}{}{}{}", api, sep_qs(qs), qs, sep_hash(hash), hash);
-    resource
-}
-
-pub fn url(api: &str, qs: &str) -> String {
-    format!("http://{}{}{}", &api, sep_qs(qs), qs)
-}
-
-pub fn calculate_hash<T: Hash>(t: &T) -> u64 {
+pub fn hash<T: Hash>(t: &T) -> u64 {
     let mut s = DefaultHasher::new();
     t.hash(&mut s);
     s.finish()

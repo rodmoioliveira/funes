@@ -15,8 +15,8 @@ pub async fn get(
     }
 
     let qs = req.query_string();
-    let resource = utils::resource(&api, &qs, "");
-    let file_content = io::read_file(&resource);
+    let resource = utils::format_resource(&api, &qs, "");
+    let file_content = io::read(&resource);
 
     match file_content {
         Ok(value) => Ok(HttpResponse::Ok().body(value)),
@@ -24,15 +24,15 @@ pub async fn get(
             debug!(
                 "File not found! For api: {}, resource: {}",
                 &api,
-                utils::filename(&resource),
+                utils::format_filename(&resource),
             );
             statics::ENVS.allow_externals_calls()?;
-            let url = utils::url(&api, &qs);
+            let url = utils::format_url(&api, &qs);
             let res = fetch::get(&client, &url)
                 .await
                 .unwrap_or(serde_json::json!({}));
             let file_content = serde_json::to_string(&res).unwrap_or("".to_string());
-            io::write_file(&resource, file_content)?;
+            io::write(&resource, file_content)?;
             Ok(HttpResponse::Created().json(res))
         }
     }
@@ -46,11 +46,11 @@ pub async fn post(
 ) -> Result<HttpResponse, error::MyError> {
     let api = api.into_inner();
     let payload = payload.into_inner();
-    let hash = utils::calculate_hash(&utils::HashValue(&payload));
+    let hash = utils::hash(&utils::HashValue(&payload));
 
     let qs = req.query_string();
-    let resource = utils::resource(&api, &qs, &hash.to_string());
-    let file_content = io::read_file(&resource);
+    let resource = utils::format_resource(&api, &qs, &hash.to_string());
+    let file_content = io::read(&resource);
 
     match file_content {
         Ok(value) => Ok(HttpResponse::Ok().body(value)),
@@ -58,16 +58,16 @@ pub async fn post(
             debug!(
                 "File not found! For api: {}, resource: {}, payload_post: {}",
                 &api,
-                utils::filename(&resource),
+                utils::format_filename(&resource),
                 &payload,
             );
             statics::ENVS.allow_externals_calls()?;
-            let url = utils::url(&api, &qs);
+            let url = utils::format_url(&api, &qs);
             let res = fetch::post(&client, &url, &payload)
                 .await
                 .unwrap_or(serde_json::json!({}));
             let file_content = serde_json::to_string(&res).unwrap_or("".to_string());
-            io::write_file(&resource, file_content)?;
+            io::write(&resource, file_content)?;
             Ok(HttpResponse::Created().json(res))
         }
     }
