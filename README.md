@@ -13,7 +13,7 @@ funes is a server to mock API responses. You might use it to:
 - test applications without hitting production resources;
 - create integrations tests for your applications;
 
-## Installation
+# Installation
 
 Install funes in your `Cargo.toml` alongside your preferable [async
 runtime](https://rust-lang.github.io/async-book/08_ecosystem/00_chapter.html):
@@ -35,7 +35,7 @@ async fn main() -> std::io::Result<()> {
 }
 ```
 
-## Mocking Requests
+# Mocking Requests
 
 Now your application is ready to receive requests and to store the responses. To
 test it, run your funes server in one terminal and make requests from another
@@ -88,7 +88,7 @@ curl -d '{ "userId": 1, "id": 1, "title": "title", "body": "body" }' -H "Content
 [2021-09-01T04:25:02Z INFO  actix_web::middleware::logger] 201 0.293888 POST /jsonplaceholder.typicode.com/posts HTTP/1.1 curl/7.64.1 bytes:51
 ```
 
-## Routes
+# Routes
 
 These are the default routes of a funes app:
 
@@ -97,7 +97,7 @@ These are the default routes of a funes app:
 - `localhost:8080/health`
 - `localhost:8080/resource-status`
 
-## Default Envs
+# Default Envs
 
 ```sh
 RUST_ALLOW_EXTERNALS=true
@@ -107,14 +107,14 @@ RUST_LOG=funes,actix_web=info
 RUST_MOCK_DIR="./mocks"
 ```
 
-## Examples
+# Examples
 
 All examples can be found in the [examples](examples/) folder:
 
 - [minimal](examples/minimal/)
 - [docker](examples/docker/)
 
-## Benchmarks
+# Benchmarks
 
 Funes is really fast! Take a look:
 

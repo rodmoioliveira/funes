@@ -84,8 +84,16 @@ mod tests {
 
     use super::*;
 
+    fn initial_setup() -> Result<(), error::MyError> {
+        utils::check_mocks_dir()?;
+        Ok(())
+    }
+
     #[actix_rt::test]
     async fn test_health() {
+        dotenv().ok();
+        initial_setup().ok();
+
         let srv = actix_test::start(|| {
             App::new().service(web::resource("/health").route(web::get().to(ok)))
         });
@@ -99,6 +107,9 @@ mod tests {
 
     #[actix_rt::test]
     async fn test_resource_status() {
+        dotenv().ok();
+        initial_setup().ok();
+
         let srv = actix_test::start(|| {
             App::new().service(web::resource("/resource-status").route(web::get().to(ok)))
         });
@@ -113,6 +124,7 @@ mod tests {
     #[actix_rt::test]
     async fn get_api() {
         dotenv().ok();
+        initial_setup().ok();
 
         let srv = actix_test::start(move || {
             App::new()
@@ -143,6 +155,7 @@ mod tests {
     #[actix_rt::test]
     async fn post_api() {
         dotenv().ok();
+        initial_setup().ok();
 
         let srv = actix_test::start(move || {
             App::new()
@@ -174,6 +187,7 @@ mod tests {
             .unwrap();
         let res_json: serde_json::Value =
             serde_json::from_str(&String::from_utf8(res.to_vec()).unwrap()).unwrap();
+
         assert_eq!(res_json, json);
     }
 }
