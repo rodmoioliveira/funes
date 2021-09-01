@@ -1,6 +1,29 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.4](https://github.com/rodmoioliveira/funes/compare/0.1.3...0.1.4) - 2021-09-01
+
+[5e1c60a](https://github.com/rodmoioliveira/funes/commit/5e1c60a65e9e53b83ca93b35efaa2ca86da8dc83)...[8706c66](https://github.com/rodmoioliveira/funes/commit/8706c66999af01e87ec29f7b45865cbacb7d3b9d)
+
+### Bug Fixes
+
+- Remove status route ([137c205](https://github.com/rodmoioliveira/funes/commit/137c205c45ad231655160dd5d5a1409f8fe07d6d))
+- Remove convert_headers() and headers from reqwest ([8706c66](https://github.com/rodmoioliveira/funes/commit/8706c66999af01e87ec29f7b45865cbacb7d3b9d))
+
+### CI
+
+- Create rust.yml ([b4d03b1](https://github.com/rodmoioliveira/funes/commit/b4d03b1a252c2a4c43bc506bf14cbe42e2cf2288))
+
+### Features
+
+- Create RUST_MOCK_DIR env ([c495255](https://github.com/rodmoioliveira/funes/commit/c495255d920808f87fe322db4c6ca74a3fa5b827))
+
+### Miscellaneous Tasks
+
+- Update CHANGELOG ([9d76977](https://github.com/rodmoioliveira/funes/commit/9d769771f3e84a4f9ebedc7438bce5d7848ff4b4))
+- Add pipeline workflow badge ([527cb44](https://github.com/rodmoioliveira/funes/commit/527cb44a5071c5d8383224a74d378d0db98ad755))
+- Remove some .clone()s ([918be20](https://github.com/rodmoioliveira/funes/commit/918be20a9fbce9069b3f52f781b71149c600d6a1))
+
 ## [0.1.3](https://github.com/rodmoioliveira/funes/compare/0.1.2...0.1.3) - 2021-08-31
 
 [be52bc1](https://github.com/rodmoioliveira/funes/commit/be52bc18ff14306fd5ece0947a7f1302e902fc41)...[5e1c60a](https://github.com/rodmoioliveira/funes/commit/5e1c60a65e9e53b83ca93b35efaa2ca86da8dc83)
