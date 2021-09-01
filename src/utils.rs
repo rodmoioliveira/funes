@@ -16,16 +16,6 @@ pub fn check_mocks_dir() -> std::io::Result<()> {
     Ok(())
 }
 
-pub fn convert_headers(headers: &actix_web::http::HeaderMap) -> reqwest::header::HeaderMap {
-    headers.iter().filter(|h| h.0 != "host").fold(
-        reqwest::header::HeaderMap::new(),
-        |mut acc, h| {
-            acc.insert(h.0, h.1.clone());
-            acc
-        },
-    )
-}
-
 pub fn envs() -> models::Envs {
     models::Envs {
         allow_externals: env::var("RUST_ALLOW_EXTERNALS")

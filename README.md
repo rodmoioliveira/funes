@@ -45,8 +45,6 @@ one:
 # terminal 1
 cargo run
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.26s
-     Running `target/debug/funes`
 [2021-08-31T23:21:33Z INFO  funes::server] Server running in 0.0.0.0:8080
 [2021-08-31T23:21:33Z INFO  funes::server] Mocks directory is ./mocks
 [2021-08-31T23:21:33Z INFO  funes::server] Calling externals apis is allowed? true
@@ -75,6 +73,19 @@ curl http://localhost:8080/pokeapi.co/api/v2/pokemon/1
 
 # terminal 1
 [2021-08-30T23:16:50Z INFO  actix_web::middleware::logger] 200 0.000206 GET /pokeapi.co/api/v2/pokemon/1 HTTP/1.1 curl/7.64.1 bytes:199394
+```
+
+Posts are supported:
+
+```sh
+# terminal 2
+curl -d '{ "userId": 1, "id": 1, "title": "title", "body": "body" }' -H "Content-Type: application/json" -X POST 0.0.0.0:8080/jsonplaceholder.typicode.com/posts
+
+# terminal 1
+[2021-09-01T04:25:01Z DEBUG funes::handlers] File not found! For api: jsonplaceholder.typicode.com/posts, resource: ./mocks/768531861528487606.json, payload_post: {"body":"body","id":1,"title":"title","userId":1}
+[2021-09-01T04:25:01Z DEBUG funes::fetch] External post to: http://jsonplaceholder.typicode.com/posts
+[2021-09-01T04:25:02Z DEBUG funes::utils] Write filename: ./mocks/768531861528487606.json
+[2021-09-01T04:25:02Z INFO  actix_web::middleware::logger] 201 0.293888 POST /jsonplaceholder.typicode.com/posts HTTP/1.1 curl/7.64.1 bytes:51
 ```
 
 ## Routes
