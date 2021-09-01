@@ -3,29 +3,14 @@ use std::{
     hash::{Hash, Hasher},
 };
 
-use crate::statics;
-
-pub fn format_resource(api: &str, qs: &str, hash: &str) -> String {
-    let resource = format!("{}{}{}{}{}", api, sep_qs(qs), qs, sep_hash(hash), hash);
-    resource
-}
-
-pub fn format_filename(resource: &str) -> String {
-    format!("{}/{}.json", &statics::ENVS.mock_dir, hash(&resource))
-}
-
-pub fn format_url(api: &str, qs: &str) -> String {
-    format!("http://{}{}{}", &api, sep_qs(qs), qs)
-}
-
-fn sep_hash(qs: &str) -> &str {
+pub fn sep_hash(qs: &str) -> &str {
     match qs == "" {
         true => "",
         false => "-",
     }
 }
 
-fn sep_qs(qs: &str) -> &str {
+pub fn sep_qs(qs: &str) -> &str {
     match qs == "" {
         true => "",
         false => "?",

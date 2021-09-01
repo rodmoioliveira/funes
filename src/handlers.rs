@@ -2,7 +2,7 @@ use actix_web::{web, HttpRequest, HttpResponse, Responder};
 use log::debug;
 use reqwest::Client;
 
-use crate::{error, fetch, io, statics, utils};
+use crate::{error, fetch, format, io, statics, utils};
 
 pub async fn get(
     api: web::Path<String>,
@@ -15,7 +15,7 @@ pub async fn get(
     }
 
     let qs = req.query_string();
-    let resource = utils::format_resource(&api, &qs, "");
+    let resource = format::resource(&api, &qs, "");
     let file_content = io::read(&resource);
 
     match file_content {
@@ -24,10 +24,10 @@ pub async fn get(
             debug!(
                 "File not found! For api: {}, resource: {}",
                 &api,
-                utils::format_filename(&resource),
+                format::filename(&resource),
             );
             statics::ENVS.allow_externals_calls()?;
-            let url = utils::format_url(&api, &qs);
+            let url = format::url(&api, &qs);
             let res = fetch::get(&client, &url)
                 .await
                 .unwrap_or(serde_json::json!({}));
@@ -49,7 +49,7 @@ pub async fn post(
     let hash = utils::hash(&utils::HashValue(&payload));
 
     let qs = req.query_string();
-    let resource = utils::format_resource(&api, &qs, &hash.to_string());
+    let resource = format::resource(&api, &qs, &hash.to_string());
     let file_content = io::read(&resource);
 
     match file_content {
@@ -58,11 +58,11 @@ pub async fn post(
             debug!(
                 "File not found! For api: {}, resource: {}, payload_post: {}",
                 &api,
-                utils::format_filename(&resource),
+                format::filename(&resource),
                 &payload,
             );
             statics::ENVS.allow_externals_calls()?;
-            let url = utils::format_url(&api, &qs);
+            let url = format::url(&api, &qs);
             let res = fetch::post(&client, &url, &payload)
                 .await
                 .unwrap_or(serde_json::json!({}));
