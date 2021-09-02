@@ -1,6 +1,20 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.6](https://github.com/rodmoioliveira/funes/compare/0.1.5...0.1.6) - 2021-09-02
+
+[4f844be](https://github.com/rodmoioliveira/funes/commit/4f844be0f64dd4fe252d4c86fea64ea885ab99ea)...[5513065](https://github.com/rodmoioliveira/funes/commit/5513065d30edc8b9fdda8002e80a1b013b114a6c)
+
+### Miscellaneous Tasks
+
+- Update CHANGELOG ([5792da7](https://github.com/rodmoioliveira/funes/commit/5792da7547d8a5ebee5da646f4f3dd7c44e3ddc4))
+
+### Refactor
+
+- Change modules visibility ([885f978](https://github.com/rodmoioliveira/funes/commit/885f978e1187c5c875e6c015068a2367a99dc522))
+- Rename errors ([9601971](https://github.com/rodmoioliveira/funes/commit/960197119a5726ee2bfc491d27f6d191fdd25c9f))
+- Rename MyError to FunesError ([5513065](https://github.com/rodmoioliveira/funes/commit/5513065d30edc8b9fdda8002e80a1b013b114a6c))
+
 ## [0.1.5](https://github.com/rodmoioliveira/funes/compare/0.1.4...0.1.5) - 2021-09-01
 
 [8706c66](https://github.com/rodmoioliveira/funes/commit/8706c66999af01e87ec29f7b45865cbacb7d3b9d)...[4f844be](https://github.com/rodmoioliveira/funes/commit/4f844be0f64dd4fe252d4c86fea64ea885ab99ea)
