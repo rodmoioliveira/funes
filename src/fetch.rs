@@ -13,10 +13,10 @@ pub async fn get(
         .get(url)
         .send()
         .await
-        .map_err(error::MyError::ReqwestError)?
+        .map_err(error::MyError::RequestError)?
         .json()
         .await
-        .map_err(error::MyError::ReqwestError)?)
+        .map_err(error::MyError::RequestError)?)
 }
 
 pub async fn post(
@@ -30,8 +30,8 @@ pub async fn post(
         .json(payload)
         .send()
         .await
-        .map_err(error::MyError::ReqwestError)?
+        .map_err(error::MyError::RequestError)?
         .json()
         .await
-        .map_err(error::MyError::ReqwestError)?)
+        .map_err(error::MyError::RequestError)?)
 }
