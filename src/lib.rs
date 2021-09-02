@@ -1,9 +1,10 @@
-pub mod config;
-pub mod error;
-pub mod fetch;
-pub mod format;
-pub mod handlers;
-pub mod io;
+mod config;
+mod error;
+mod fetch;
+mod format;
+mod handlers;
+mod io;
+mod statics;
+mod utils;
+
 pub mod server;
-pub mod statics;
-pub mod utils;
