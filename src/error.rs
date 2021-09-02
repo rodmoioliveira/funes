@@ -15,28 +15,28 @@ impl<T> Json<T> {
 }
 
 #[derive(Display, From, Debug)]
-pub enum MyError {
+pub enum FunesError {
     UnauthorizedError,
     RequestError(ReqwestError),
     SerdeError(serde_json::Error),
     StdError(std::io::Error),
 }
 
-impl std::error::Error for MyError {}
+impl std::error::Error for FunesError {}
 
-impl ResponseError for MyError {
+impl ResponseError for FunesError {
     fn error_response(&self) -> HttpResponse {
         match *self {
-            MyError::RequestError(ref err) => {
+            FunesError::RequestError(ref err) => {
                 HttpResponse::InternalServerError().json(Json::new(err.to_string()))
             }
-            MyError::SerdeError(ref err) => {
+            FunesError::SerdeError(ref err) => {
                 HttpResponse::InternalServerError().json(Json::new(err.to_string()))
             }
-            MyError::StdError(ref err) => {
+            FunesError::StdError(ref err) => {
                 HttpResponse::InternalServerError().json(Json::new(err.to_string()))
             }
-            MyError::UnauthorizedError => {
+            FunesError::UnauthorizedError => {
                 HttpResponse::Unauthorized().json(Json::new("Not allowed to call external apis!"))
             }
         }
