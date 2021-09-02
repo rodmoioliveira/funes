@@ -17,7 +17,7 @@ impl Envs {
     pub fn allow_externals_calls(&self) -> Result<(), error::MyError> {
         match self.allow_externals {
             true => Ok(()),
-            false => Err(error::MyError::Unauthorized),
+            false => Err(error::MyError::UnauthorizedError),
         }
     }
 }
