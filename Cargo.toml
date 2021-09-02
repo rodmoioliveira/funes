@@ -1,10 +1,18 @@
 [package]
 name = "funes"
-version = "0.1.0"
+version = "0.1.6"
 authors = ["Rodolfo Mói de Oliveira <rodmoi.oliveira@gmail.com>"]
 edition = "2018"
 readme = "README.md"
+description = """
+Funes is a server to mock API responses.
+"""
+license = "MIT"
 repository = "https://github.com/rodmoioliveira/funes"
+documentation = "https://github.com/rodmoioliveira/funes"
+homepage = "https://github.com/rodmoioliveira/funes"
+keywords = ["http", "mock", "test", "cache"]
+categories = ["caching", "development-tools::testing", "web-programming::http-server"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
