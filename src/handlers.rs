@@ -8,7 +8,7 @@ pub async fn get(
     api: web::Path<String>,
     client: web::Data<Client>,
     req: HttpRequest,
-) -> Result<HttpResponse, error::MyError> {
+) -> Result<HttpResponse, error::FunesError> {
     let api = api.into_inner();
     if api == "favicon.ico" {
         return Ok(HttpResponse::Ok().finish());
@@ -43,7 +43,7 @@ pub async fn post(
     client: web::Data<Client>,
     payload: web::Json<serde_json::Value>,
     req: HttpRequest,
-) -> Result<HttpResponse, error::MyError> {
+) -> Result<HttpResponse, error::FunesError> {
     let api = api.into_inner();
     let payload = payload.into_inner();
     let hash = utils::hash(&utils::HashValue(&payload));
@@ -73,7 +73,7 @@ pub async fn post(
     }
 }
 
-pub async fn ok() -> Result<impl Responder, error::MyError> {
+pub async fn ok() -> Result<impl Responder, error::FunesError> {
     Ok(HttpResponse::Ok().body("Ok".to_string()))
 }
 
@@ -84,7 +84,7 @@ mod tests {
 
     use super::*;
 
-    fn initial_setup() -> Result<(), error::MyError> {
+    fn initial_setup() -> Result<(), error::FunesError> {
         io::mock_dir()?;
         Ok(())
     }

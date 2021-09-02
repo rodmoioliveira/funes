@@ -14,10 +14,10 @@ pub struct Envs {
 }
 
 impl Envs {
-    pub fn allow_externals_calls(&self) -> Result<(), error::MyError> {
+    pub fn allow_externals_calls(&self) -> Result<(), error::FunesError> {
         match self.allow_externals {
             true => Ok(()),
-            false => Err(error::MyError::UnauthorizedError),
+            false => Err(error::FunesError::UnauthorizedError),
         }
     }
 }
