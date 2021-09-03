@@ -1,6 +1,29 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.10](https://github.com/rodmoioliveira/funes/compare/0.1.9...0.1.10) - 2021-09-03
+
+[7b611ce](https://github.com/rodmoioliveira/funes/commit/7b611ce5a4940837c31faa411873f19cf03545c4)...[d196756](https://github.com/rodmoioliveira/funes/commit/d1967560337ef19f8295021512845544d748843f)
+
+### Miscellaneous Tasks
+
+- Set_var RUST_LOG ([a88ee38](https://github.com/rodmoioliveira/funes/commit/a88ee38941b0c6d27455218587a539636d7f9ae5))
+- 0.1.10 ([d196756](https://github.com/rodmoioliveira/funes/commit/d1967560337ef19f8295021512845544d748843f))
+
+## [0.1.9](https://github.com/rodmoioliveira/funes/compare/0.1.8...0.1.9) - 2021-09-03
+
+[9368c7e](https://github.com/rodmoioliveira/funes/commit/9368c7efceaf123747c3bf62117d41ea18f20f87)...[7b611ce](https://github.com/rodmoioliveira/funes/commit/7b611ce5a4940837c31faa411873f19cf03545c4)
+
+### Documentation
+
+- Add docs.rs docs ([a01e139](https://github.com/rodmoioliveira/funes/commit/a01e139299d013ed9af092fb250a48852080c328))
+
+### Miscellaneous Tasks
+
+- Update CHANGELOG ([2d98fed](https://github.com/rodmoioliveira/funes/commit/2d98fede8567f66f851ddf2baa740d99d1e3a9e8))
+- Update README ([2a969bc](https://github.com/rodmoioliveira/funes/commit/2a969bc4791bcf5d45ecf3a6f79f095cf9ff8f31))
+- 0.1.9 ([7b611ce](https://github.com/rodmoioliveira/funes/commit/7b611ce5a4940837c31faa411873f19cf03545c4))
+
 ## [0.1.8](https://github.com/rodmoioliveira/funes/compare/0.1.7...0.1.8) - 2021-09-03
 
 [543f119](https://github.com/rodmoioliveira/funes/commit/543f1196e711e80c176bedf82df43b9bb8ae6526)...[9368c7e](https://github.com/rodmoioliveira/funes/commit/9368c7efceaf123747c3bf62117d41ea18f20f87)
