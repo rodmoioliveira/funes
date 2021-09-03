@@ -10,6 +10,7 @@ pub struct Envs {
     pub h_server: String,
     pub h_user_agent: String,
     pub localhost: String,
+    pub log: String,
     pub mock_dir: String,
 }
 
@@ -28,9 +29,10 @@ pub fn envs() -> Envs {
             .unwrap_or("true".to_string())
             .parse::<bool>()
             .unwrap(),
-        localhost: env::var("RUST_HOST").unwrap_or("0.0.0.0:8080".to_string()),
         h_user_agent: env::var("RUST_APP").unwrap_or("funes".to_string()),
         h_server: env::var("RUST_APP").unwrap_or("funes".to_string()),
+        localhost: env::var("RUST_HOST").unwrap_or("0.0.0.0:8080".to_string()),
+        log: env::var("RUST_LOG").unwrap_or("funes,actix_web=info".to_string()),
         mock_dir: env::var("RUST_MOCK_DIR").unwrap_or("./mocks".to_string()),
     }
 }

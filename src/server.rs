@@ -1,3 +1,5 @@
+use std::env;
+
 use actix_files::Files;
 use actix_web::{http::header, middleware, web, App, HttpServer};
 use dotenv::dotenv;
@@ -7,6 +9,7 @@ use mime;
 use crate::{handlers, io, statics};
 
 pub async fn new() -> std::io::Result<()> {
+    env::set_var("RUST_LOG", &statics::ENVS.log);
     dotenv().ok();
     env_logger::init();
     io::mock_dir()?;
