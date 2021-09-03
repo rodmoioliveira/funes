@@ -1,8 +1,5 @@
 #!make
 
-benches: ## Run benchmarks
-	@cargo bench --bench my_benchmark
-
 changelog: ## Autogenerate CHANGELOG.md
 	@docker run -t -v "$(shell pwd)":/app/ orhunp/git-cliff:latest --config cliff.toml --output CHANGELOG.md
 
@@ -27,4 +24,4 @@ help: ## Display this help screen
 tests: ## Run tests
 	@cargo test
 
-.PHONY: benches changelog dev doc fix fmt help tests
+.PHONY: changelog dev doc fix fmt help tests
