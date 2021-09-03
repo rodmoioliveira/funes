@@ -1,6 +1,6 @@
 [package]
 name = "funes"
-version = "0.1.10"
+version = "0.1.11"
 authors = ["Rodolfo Mói de Oliveira <rodmoi.oliveira@gmail.com>"]
 edition = "2018"
 readme = "README.md"

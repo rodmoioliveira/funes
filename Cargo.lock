@@ -594,7 +594,7 @@ dependencies = [
 
 [[package]]
 name = "funes"
-version = "0.1.9"
+version = "0.1.11"
 dependencies = [
  "actix-files",
  "actix-rt",

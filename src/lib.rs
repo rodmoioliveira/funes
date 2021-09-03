@@ -1,3 +1,12 @@
+//! > Lo recuerdo (yo no tengo derecho a pronunciar ese verbo sagrado, sólo un
+//! > hombre en la tierra tuvo derecho y ese hombre ha muerto) con una oscura
+//! > pasionaria en la mano, viéndola como nadie la ha visto, aunque la mirara
+//! > desde el crepúsculo del día hasta el de la noche, toda una vida entera.
+//!
+//! *Jorge Luis Borges - Funes, el memorioso*
+//!
+//! ---
+//!
 //! funes is a server to mock API responses. You might use it to:
 //! - test applications without hitting production resources;
 //! - create integrations tests for your applications;
@@ -10,7 +19,7 @@
 //! ```toml
 //! [dependencies]
 //! actix-web = "4.0.0-beta.8"
-//! funes = "0.1.10"
+//! funes = "0.1.11"
 //! ```
 //!
 //! Create a new instance of a funes server in your `main.rs`:

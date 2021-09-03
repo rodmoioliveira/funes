@@ -1,6 +1,9 @@
-> I remember him with a dark passion flower in his hand, seeing it as no one has ever seen it, though he might look at it from the twilight of dawn till that of evening, a whole lifetime.
+> Lo recuerdo (yo no tengo derecho a pronunciar ese verbo sagrado, sólo un
+> hombre en la tierra tuvo derecho y ese hombre ha muerto) con una oscura
+> pasionaria en la mano, viéndola como nadie la ha visto, aunque la mirara desde
+> el crepúsculo del día hasta el de la noche, toda una vida entera.
 
-*Jorge Luis Borges - Funes, The Memorious*
+*Jorge Luis Borges - Funes, el memorioso*
 
 # Funes
 
@@ -23,7 +26,7 @@ runtime](https://rust-lang.github.io/async-book/08_ecosystem/00_chapter.html):
 ```toml
 [dependencies]
 actix-web = "4.0.0-beta.8"
-funes = "0.1.10"
+funes = "0.1.11"
 ```
 
 Create a new instance of a funes server in your `main.rs`:
