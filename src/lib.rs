@@ -10,7 +10,7 @@
 //! ```toml
 //! [dependencies]
 //! actix-web = "4.0.0-beta.8"
-//! funes = "0.1.9"
+//! funes = "0.1.10"
 //! ```
 //!
 //! Create a new instance of a funes server in your `main.rs`:
