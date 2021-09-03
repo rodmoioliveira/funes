@@ -81,7 +81,10 @@ Posts are supported:
 
 ```sh
 # terminal 2
-curl -d '{ "userId": 1, "id": 1, "title": "title", "body": "body" }' -H "Content-Type: application/json" -X POST 0.0.0.0:8080/jsonplaceholder.typicode.com/posts
+curl \
+  -d '{ "userId": 1, "id": 1, "title": "title", "body": "body" }' \
+  -H "Content-Type: application/json" \
+  -X POST 0.0.0.0:8080/jsonplaceholder.typicode.com/posts
 
 # terminal 1
 [2021-09-01T04:25:01Z DEBUG funes::handlers] File not found! For api: jsonplaceholder.typicode.com/posts, resource: ./mocks/768531861528487606.json, payload_post: {"body":"body","id":1,"title":"title","userId":1}
