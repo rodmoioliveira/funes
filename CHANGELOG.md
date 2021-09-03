@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.8](https://github.com/rodmoioliveira/funes/compare/0.1.7...0.1.8) - 2021-09-03
+
+[543f119](https://github.com/rodmoioliveira/funes/commit/543f1196e711e80c176bedf82df43b9bb8ae6526)...[9368c7e](https://github.com/rodmoioliveira/funes/commit/9368c7efceaf123747c3bf62117d41ea18f20f87)
+
+### Miscellaneous Tasks
+
+- Update CHANGELOG ([f9e855c](https://github.com/rodmoioliveira/funes/commit/f9e855cac5bdc222aaf19655ffcbc5f349450bb8))
+- Update README ([cb5a94a](https://github.com/rodmoioliveira/funes/commit/cb5a94a381235f2df11a58111462e9afb7f7d6f2))
+- 0.1.8 ([9368c7e](https://github.com/rodmoioliveira/funes/commit/9368c7efceaf123747c3bf62117d41ea18f20f87))
+
 ## [0.1.7](https://github.com/rodmoioliveira/funes/compare/0.1.6...0.1.7) - 2021-09-03
 
 [5513065](https://github.com/rodmoioliveira/funes/commit/5513065d30edc8b9fdda8002e80a1b013b114a6c)...[543f119](https://github.com/rodmoioliveira/funes/commit/543f1196e711e80c176bedf82df43b9bb8ae6526)

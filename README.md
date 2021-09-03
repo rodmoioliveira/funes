@@ -26,7 +26,7 @@ funes = "0.1.7"
 
 Create a new instance of a funes server in your `main.rs`:
 
-```rs
+```rust
 use funes;
 
 #[actix_web::main]
