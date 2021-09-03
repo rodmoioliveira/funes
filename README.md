@@ -21,7 +21,7 @@ runtime](https://rust-lang.github.io/async-book/08_ecosystem/00_chapter.html):
 ```toml
 [dependencies]
 actix-web = "4.0.0-beta.8"
-funes = { git = "https://github.com/rodmoioliveira/funes", branch = "main" }
+funes = "0.1.7"
 ```
 
 Create a new instance of a funes server in your `main.rs`:
