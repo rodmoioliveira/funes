@@ -5,6 +5,8 @@
 # Funes
 
 ![pipeline workflow](https://github.com/rodmoioliveira/funes/actions/workflows/rust.yml/badge.svg)
+[![crates.io](https://img.shields.io/crates/v/funes.svg)](https://crates.io/crates/funes)
+[![docs.rs](https://docs.rs/funes/badge.svg)](https://docs.rs/funes)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Changelog](https://camo.githubusercontent.com/4d89fc2186d69bdbb2c6ea6cb54ab16915be5e5e0b63a393e87a75741f1baa8c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6368616e67656c6f672d4348414e47454c4f472e6d642d253233453035373335)](CHANGELOG.md)
 [![Code of Conduct](https://img.shields.io/badge/code-of%20conduct-blue.svg)](CODE_OF_CONDUCT.md)
@@ -21,7 +23,7 @@ runtime](https://rust-lang.github.io/async-book/08_ecosystem/00_chapter.html):
 ```toml
 [dependencies]
 actix-web = "4.0.0-beta.8"
-funes = "0.1.7"
+funes = "0.1.8"
 ```
 
 Create a new instance of a funes server in your `main.rs`:
