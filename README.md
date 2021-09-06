@@ -10,49 +10,34 @@
 ![pipeline workflow](https://github.com/rodmoioliveira/funes/actions/workflows/rust.yml/badge.svg)
 [![crates.io](https://img.shields.io/crates/v/funes.svg)](https://crates.io/crates/funes)
 [![docs.rs](https://docs.rs/funes/badge.svg)](https://docs.rs/funes)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Changelog](https://camo.githubusercontent.com/4d89fc2186d69bdbb2c6ea6cb54ab16915be5e5e0b63a393e87a75741f1baa8c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6368616e67656c6f672d4348414e47454c4f472e6d642d253233453035373335)](CHANGELOG.md)
-[![Code of Conduct](https://img.shields.io/badge/code-of%20conduct-blue.svg)](CODE_OF_CONDUCT.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/rodmoioliveira/funes/blob/main/LICENSE)
+[![Changelog](https://camo.githubusercontent.com/4d89fc2186d69bdbb2c6ea6cb54ab16915be5e5e0b63a393e87a75741f1baa8c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6368616e67656c6f672d4348414e47454c4f472e6d642d253233453035373335)](https://github.com/rodmoioliveira/funes/blob/main/CHANGELOG.md)
+[![Code of Conduct](https://img.shields.io/badge/code-of%20conduct-blue.svg)](https://github.com/rodmoioliveira/funes/blob/main/CODE_OF_CONDUCT.md)
 
 funes is a server to mock API responses. You might use it to:
+
 - test applications without hitting production resources;
 - create integrations tests for your applications;
 
 # Installation
 
-Install funes in your `Cargo.toml` alongside your preferable [async
-runtime](https://rust-lang.github.io/async-book/08_ecosystem/00_chapter.html):
+To install funes, you must have [rust and cargo
+installed](https://www.rust-lang.org/tools/install). Then you can run:
 
-```toml
-[dependencies]
-actix-web = "4.0.0-beta.8"
-funes = "0.1.11"
+```sh
+cargo install funes
 ```
 
-Create a new instance of a funes server in your `main.rs`:
+# Usage
 
-```rust
-use funes;
-
-#[actix_web::main]
-async fn main() -> std::io::Result<()> {
-    Ok(funes::server::new().await?)
-}
-```
-
-# Mocking Requests
-
-Now your application is ready to receive requests and to store the responses. To
-test it, run your funes server in one terminal and make requests from another
+Now you can run your funes server in one terminal and make requests from another
 one:
 
 ```sh
 # terminal 1
-cargo run
+funes
 
-[2021-08-31T23:21:33Z INFO  funes::server] Server running in 0.0.0.0:8080
-[2021-08-31T23:21:33Z INFO  funes::server] Mocks directory is ./mocks
-[2021-08-31T23:21:33Z INFO  funes::server] Calling externals apis is allowed? true
+[2021-09-08T23:29:17Z INFO  funes::server] ENVS: Envs { allow_externals: true, api_regex: ".+", h_server: "funes", h_user_agent: "funes", latency_collection: "none", latency_enable: false, localhost: "0.0.0.0:8080", log: "funes,actix_web=info", mock_dir: "./mocks" }, LATENCY_COLLECTION: {}
 ```
 
 To mock the requests of an API, call the endpoint `http://localhost:8080/{API}`.
@@ -60,24 +45,24 @@ The first request will hit the API and then store the response:
 
 ```sh
 # terminal 2
-curl http://localhost:8080/pokeapi.co/api/v2/pokemon/1
+curl http://localhost:8080/jsonplaceholder.typicode.com/todos/1
 
 # terminal 1
-[2021-08-30T23:16:17Z DEBUG funes::handlers] File not found! For api: pokeapi.co/api/v2/pokemon/1, resource: ./mocks/16709024112015907760.json
-[2021-08-30T23:16:17Z DEBUG funes::fetch] External get to: http://pokeapi.co/api/v2/pokemon/1
-[2021-08-30T23:16:17Z DEBUG funes::utils] Write filename: ./mocks/16709024112015907760.json
-[2021-08-30T23:16:17Z INFO  actix_web::middleware::logger] 201 0.355466 GET /pokeapi.co/api/v2/pokemon/1 HTTP/1.1 curl/7.64.1 bytes:199394
+[2021-09-08T23:42:27Z DEBUG funes::handlers] File not found! For api: jsonplaceholder.typicode.com/todos/1, resource: ./mocks/2573568215281262167.json
+[2021-09-08T23:42:27Z DEBUG funes::handlers] External get to: http://jsonplaceholder.typicode.com/todos/1
+[2021-09-08T23:42:27Z DEBUG funes::io] Write filename: ./mocks/2573568215281262167.json
+[2021-09-08T23:42:27Z INFO  actix_web::middleware::logger] 201 0.125973 GET /jsonplaceholder.typicode.com/todos/1 HTTP/1.1 curl/7.64.1 bytes:66
 ```
 
-The second request and all the subsequent ones will be served from
-the stored response:
+The second request and all the subsequent ones will be served from the stored
+response:
 
 ```sh
 # terminal 2
-curl http://localhost:8080/pokeapi.co/api/v2/pokemon/1
+curl http://localhost:8080/jsonplaceholder.typicode.com/todos/1
 
 # terminal 1
-[2021-08-30T23:16:50Z INFO  actix_web::middleware::logger] 200 0.000206 GET /pokeapi.co/api/v2/pokemon/1 HTTP/1.1 curl/7.64.1 bytes:199394
+[2021-09-08T23:43:06Z INFO  actix_web::middleware::logger] 200 0.000330 GET /jsonplaceholder.typicode.com/todos/1 HTTP/1.1 curl/7.64.1 bytes:66
 ```
 
 Posts are supported:
@@ -108,19 +93,19 @@ These are the default routes of a funes app:
 # Default Envs
 
 ```sh
-RUST_ALLOW_EXTERNALS=true
-RUST_APP=funes
-RUST_HOST=0.0.0.0:8080
-RUST_LOG=funes,actix_web=info
-RUST_MOCK_DIR="./mocks"
+FUNES_ALLOW_EXTERNALS=true
+FUNES_APP=funes
+FUNES_HOST=0.0.0.0:8080
+FUNES_LOG=funes,actix_web=info
+FUNES_MOCK_DIR="./mocks"
 ```
 
 # Examples
 
-All examples can be found in the [examples](examples/) folder:
+All examples can be found in the [examples](https://github.com/rodmoioliveira/funes/tree/main/examples) folder:
 
-- [minimal](examples/minimal/)
-- [docker](examples/docker/)
+- [docker](https://github.com/rodmoioliveira/funes/tree/main/examples/docker)
+- [latency-collection](https://github.com/rodmoioliveira/funes/tree/main/examples/latency-collection)
 
 # Benchmarks
 
