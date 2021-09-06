@@ -3,23 +3,24 @@ use std::env;
 use actix_files::Files;
 use actix_web::{http::header, middleware, web, App, HttpServer};
 use dotenv::dotenv;
-use log::info;
+use log;
 use mime;
 
-use crate::{handlers, io, statics};
+use crate::{handlers, io, statics, validate};
 
 pub async fn new() -> std::io::Result<()> {
     env::set_var("RUST_LOG", &statics::ENVS.log);
     dotenv().ok();
     env_logger::init();
     io::mock_dir()?;
+    validate::latency_collection();
 
     let localhost = &statics::ENVS.localhost;
-    info!("Server running in {}", localhost);
-    info!("Mocks directory is {}", statics::ENVS.mock_dir);
-    info!(
-        "Calling externals apis is allowed? {:#?}",
-        statics::ENVS.allow_externals
+
+    log::info!(
+        "ENVS: {:?}, LATENCY_COLLECTION: {:?}",
+        *statics::ENVS,
+        *statics::LATENCY_COLLECTION
     );
 
     HttpServer::new(move || {

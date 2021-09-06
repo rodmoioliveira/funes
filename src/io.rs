@@ -1,6 +1,6 @@
 use std::{fs, path::Path};
 
-use log::debug;
+use log;
 
 use crate::{format, statics};
 
@@ -20,6 +20,6 @@ pub fn read(resource: &str) -> Result<String, std::io::Error> {
 pub fn write(resource: &str, file_content: String) -> Result<(), std::io::Error> {
     let filename = format::filename(resource);
 
-    debug!("Write filename: {}", filename);
+    log::debug!("Write filename: {}", filename);
     Ok(fs::write(filename, file_content)?)
 }

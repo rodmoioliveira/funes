@@ -1,8 +1,8 @@
 use actix_web::{web, HttpRequest, HttpResponse, Responder};
-use log::debug;
+use log;
 use reqwest::Client;
 
-use crate::{error, fetch, format, io, statics, utils};
+use crate::{api, error, fetch, format, io, statics, utils};
 
 pub async fn get(
     api: web::Path<String>,
@@ -18,16 +18,22 @@ pub async fn get(
     let resource = format::resource(&api, &qs, "");
     let file_content = io::read(&resource);
 
+    api::sleep(&api, &statics::LATENCY_COLLECTION).await?;
+
     match file_content {
         Ok(value) => Ok(HttpResponse::Ok().body(value)),
         Err(_) => {
-            debug!(
+            log::debug!(
                 "File not found! For api: {}, resource: {}",
                 &api,
                 format::filename(&resource),
             );
+
             statics::ENVS.allow_externals_calls()?;
             let url = format::url(&api, &qs);
+
+            log::debug!("External get to: {}", url);
+
             let res = fetch::get(&client, &url)
                 .await
                 .unwrap_or(serde_json::json!({}));
@@ -52,17 +58,23 @@ pub async fn post(
     let resource = format::resource(&api, &qs, &hash.to_string());
     let file_content = io::read(&resource);
 
+    api::sleep(&api, &statics::LATENCY_COLLECTION).await?;
+
     match file_content {
         Ok(value) => Ok(HttpResponse::Ok().body(value)),
         Err(_) => {
-            debug!(
+            log::debug!(
                 "File not found! For api: {}, resource: {}, payload_post: {}",
                 &api,
                 format::filename(&resource),
                 &payload,
             );
+
             statics::ENVS.allow_externals_calls()?;
             let url = format::url(&api, &qs);
+
+            log::debug!("External post to: {}", url);
+
             let res = fetch::post(&client, &url, &payload)
                 .await
                 .unwrap_or(serde_json::json!({}));

@@ -1,0 +1,47 @@
+{
+  "jsonplaceholder.typicode.com/posts": {
+    "min": 0.00317,
+    "p50": 0.0833,
+    "p75": 0.14,
+    "p90": 0.199,
+    "p95": 0.217,
+    "p99": 0.217,
+    "max": 3.75
+  },
+  "jsonplaceholder.typicode.com/comments": {
+    "min": 0.00317,
+    "p50": 0.0833,
+    "p75": 0.14,
+    "p90": 0.199,
+    "p95": 0.217,
+    "p99": 0.217,
+    "max": 3.75
+  },
+  "jsonplaceholder.typicode.com/albums": {
+    "min": 0.00317,
+    "p50": 0.0833,
+    "p75": 0.14,
+    "p90": 0.199,
+    "p95": 0.217,
+    "p99": 0.217,
+    "max": 3.75
+  },
+  "jsonplaceholder.typicode.com/todos": {
+    "min": 0.00317,
+    "p50": 0.0833,
+    "p75": 0.14,
+    "p90": 0.199,
+    "p95": 0.217,
+    "p99": 0.217,
+    "max": 3.75
+  },
+  "jsonplaceholder.typicode.com/users": {
+    "min": 0.00317,
+    "p50": 0.0833,
+    "p75": 0.14,
+    "p90": 0.199,
+    "p95": 0.217,
+    "p99": 0.217,
+    "max": 3.75
+  }
+}

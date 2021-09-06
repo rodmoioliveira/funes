@@ -16,10 +16,11 @@ impl<T> Json<T> {
 
 #[derive(Display, From, Debug)]
 pub enum FunesError {
-    UnauthorizedError,
+    LatencyCollectionError(String),
     RequestError(ReqwestError),
     SerdeError(serde_json::Error),
     StdError(std::io::Error),
+    UnauthorizedError,
 }
 
 impl std::error::Error for FunesError {}
@@ -27,6 +28,11 @@ impl std::error::Error for FunesError {}
 impl ResponseError for FunesError {
     fn error_response(&self) -> HttpResponse {
         match *self {
+            FunesError::LatencyCollectionError(ref api) => {
+                let err_msg = format!("Key {} missing in LATENCY_COLLECTION.", api);
+                log::error!("{}", err_msg);
+                HttpResponse::InternalServerError().json(Json::new(err_msg))
+            }
             FunesError::RequestError(ref err) => {
                 HttpResponse::InternalServerError().json(Json::new(err.to_string()))
             }
