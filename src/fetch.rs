@@ -5,21 +5,21 @@ use crate::error;
 
 pub async fn get(
     client: &web::Data<Client>,
-    url: &String,
+    url: &str,
 ) -> Result<serde_json::Value, error::FunesError> {
     Ok(client
         .get(url)
         .send()
         .await
-        .map_err(error::FunesError::RequestError)?
+        .map_err(error::FunesError::Request)?
         .json()
         .await
-        .map_err(error::FunesError::RequestError)?)
+        .map_err(error::FunesError::Request)?)
 }
 
 pub async fn post(
     client: &web::Data<Client>,
-    url: &String,
+    url: &str,
     payload: &serde_json::Value,
 ) -> Result<serde_json::Value, error::FunesError> {
     Ok(client
@@ -27,8 +27,8 @@ pub async fn post(
         .json(payload)
         .send()
         .await
-        .map_err(error::FunesError::RequestError)?
+        .map_err(error::FunesError::Request)?
         .json()
         .await
-        .map_err(error::FunesError::RequestError)?)
+        .map_err(error::FunesError::Request)?)
 }

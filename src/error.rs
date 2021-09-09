@@ -16,11 +16,11 @@ impl<T> Json<T> {
 
 #[derive(Display, From, Debug)]
 pub enum FunesError {
-    LatencyCollectionError(String),
-    RequestError(ReqwestError),
-    SerdeError(serde_json::Error),
-    StdError(std::io::Error),
-    UnauthorizedError,
+    LatencyCollection(String),
+    Request(ReqwestError),
+    Serde(serde_json::Error),
+    Std(std::io::Error),
+    Unauthorized,
 }
 
 impl std::error::Error for FunesError {}
@@ -28,21 +28,21 @@ impl std::error::Error for FunesError {}
 impl ResponseError for FunesError {
     fn error_response(&self) -> HttpResponse {
         match *self {
-            FunesError::LatencyCollectionError(ref api) => {
+            FunesError::LatencyCollection(ref api) => {
                 let err_msg = format!("Key {} missing in LATENCY_COLLECTION.", api);
                 log::error!("{}", err_msg);
                 HttpResponse::InternalServerError().json(Json::new(err_msg))
             }
-            FunesError::RequestError(ref err) => {
+            FunesError::Request(ref err) => {
                 HttpResponse::InternalServerError().json(Json::new(err.to_string()))
             }
-            FunesError::SerdeError(ref err) => {
+            FunesError::Serde(ref err) => {
                 HttpResponse::InternalServerError().json(Json::new(err.to_string()))
             }
-            FunesError::StdError(ref err) => {
+            FunesError::Std(ref err) => {
                 HttpResponse::InternalServerError().json(Json::new(err.to_string()))
             }
-            FunesError::UnauthorizedError => {
+            FunesError::Unauthorized => {
                 HttpResponse::Unauthorized().json(Json::new("Not allowed to call external apis!"))
             }
         }

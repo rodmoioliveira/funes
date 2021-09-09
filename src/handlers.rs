@@ -27,8 +27,8 @@ pub async fn get(
             let url = format::url(&api, qs);
             let res = fetch::get(&client, &url)
                 .await
-                .unwrap_or(serde_json::json!({}));
-            let file_content = serde_json::to_string(&res).unwrap_or("".to_string());
+                .unwrap_or_else(|_| serde_json::json!({}));
+            let file_content = serde_json::to_string(&res).unwrap_or_else(|_| "".to_string());
 
             io::write(&resource, file_content)?;
 
@@ -61,8 +61,8 @@ pub async fn post(
             let url = format::url(&api, qs);
             let res = fetch::post(&client, &url, &payload)
                 .await
-                .unwrap_or(serde_json::json!({}));
-            let file_content = serde_json::to_string(&res).unwrap_or("".to_string());
+                .unwrap_or_else(|_| serde_json::json!({}));
+            let file_content = serde_json::to_string(&res).unwrap_or_else(|_| "".to_string());
 
             io::write(&resource, file_content)?;
 
