@@ -1,6 +1,24 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.2.1](https://github.com/rodmoioliveira/funes/compare/0.2.0...0.2.1) - 2021-09-09
+
+[b12fb1e](https://github.com/rodmoioliveira/funes/commit/b12fb1eb58ae1373057fcbfc1fad4735b0dbd862)...[8a04042](https://github.com/rodmoioliveira/funes/commit/8a04042455a68e05f9847347493a743e5b20a816)
+
+### Documentation
+
+- Improve docs ([483f93a](https://github.com/rodmoioliveira/funes/commit/483f93ad41c347eb8059ec6fdcb79c979a45fb39))
+
+### Miscellaneous Tasks
+
+- Update CHANGELOG ([5aa9aa4](https://github.com/rodmoioliveira/funes/commit/5aa9aa450f00f248bb49301b27d241613efbb4ae))
+- Update Cargo.lock ([f821f5c](https://github.com/rodmoioliveira/funes/commit/f821f5c169e3d026459d4b79d52f41e807892df4))
+- Update latency-collection examples ([4d1a18d](https://github.com/rodmoioliveira/funes/commit/4d1a18d9693ec16b3ebd74b531f706c928c02fa0))
+- Set default FUNES_MOCK_DIR as $HOME/.mocks ([36cfba0](https://github.com/rodmoioliveira/funes/commit/36cfba06ae844f72b92d28f245ec46244cb2a3b4))
+- Remove log::debug! ([3051a35](https://github.com/rodmoioliveira/funes/commit/3051a35ab8eb138ca1f82d592a0e6597eb57938f))
+- Default of FUNES_LATENCY_COLLECTION is "" ([558789c](https://github.com/rodmoioliveira/funes/commit/558789cfb03e1587258daad3bf6a6679adb86cc9))
+- 0.2.1 ([8a04042](https://github.com/rodmoioliveira/funes/commit/8a04042455a68e05f9847347493a743e5b20a816))
+
 ## [0.2.0](https://github.com/rodmoioliveira/funes/compare/0.1.11...0.2.0) - 2021-09-09
 
 [5915b85](https://github.com/rodmoioliveira/funes/commit/5915b8559236ec24456570b97c68416c25d4cb21)...[b12fb1e](https://github.com/rodmoioliveira/funes/commit/b12fb1eb58ae1373057fcbfc1fad4735b0dbd862)
