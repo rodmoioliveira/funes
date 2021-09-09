@@ -1,7 +1,5 @@
 use std::{fs, path::Path};
 
-use log;
-
 use crate::{format, statics};
 
 pub fn mock_dir() -> std::io::Result<()> {
@@ -19,7 +17,5 @@ pub fn read(resource: &str) -> Result<String, std::io::Error> {
 
 pub fn write(resource: &str, file_content: String) -> Result<(), std::io::Error> {
     let filename = format::filename(resource);
-
-    log::debug!("Write filename: {}", filename);
     Ok(fs::write(filename, file_content)?)
 }
