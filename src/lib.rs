@@ -9,7 +9,7 @@
 //!
 //! # Funes
 //!
-//! ![pipeline workflow](https://github.com/rodmoioliveira/funes/actions/workflows/rust.yml/badge.svg)
+//! ![pipeline workflow](https://github.com/rodmoioliveira/funes/actions/workflows/ci.yml/badge.svg)
 //! [![crates.io](https://img.shields.io/crates/v/funes.svg)](https://crates.io/crates/funes)
 //! [![docs.rs](https://docs.rs/funes/badge.svg)](https://docs.rs/funes)
 //! [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/rodmoioliveira/funes/blob/main/LICENSE)
