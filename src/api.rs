@@ -36,7 +36,7 @@ pub type Collection = HashMap<String, Latency>;
 pub fn key(api: &str) -> Result<&str, error::FunesError> {
     match statics::API_REGEX.find(api) {
         Some(v) => Ok(v.as_str()),
-        None => Err(error::FunesError::LatencyCollectionError(api.to_string())),
+        None => Err(error::FunesError::LatencyCollection(api.to_string())),
     }
 }
 
@@ -44,10 +44,7 @@ fn map_range(from_range: (f32, f32), to_range: (f32, f32), s: f32) -> f32 {
     to_range.0 + (s - from_range.0) * (to_range.1 - to_range.0) / (from_range.1 - from_range.0)
 }
 
-fn latency(
-    api: &String,
-    collection: &api::Collection,
-) -> Result<time::Duration, error::FunesError> {
+fn latency(api: &str, collection: &api::Collection) -> Result<time::Duration, error::FunesError> {
     let key = key(api)?;
     let latency = collection.get(key).unwrap();
     let mut rng = rand::thread_rng();
@@ -66,7 +63,7 @@ fn latency(
     Ok(time::Duration::from_secs_f32(api_res_time))
 }
 
-pub async fn sleep(api: &String, collection: &api::Collection) -> Result<(), error::FunesError> {
+pub async fn sleep(api: &str, collection: &api::Collection) -> Result<(), error::FunesError> {
     if statics::ENVS.latency_enable {
         let latency = api::latency(api, collection);
         task::sleep(latency?).await;
