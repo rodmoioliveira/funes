@@ -14,7 +14,7 @@ pub async fn get(
     }
 
     let qs = req.query_string();
-    let resource = format::resource(&api, &qs, "");
+    let resource = format::resource(&api, qs, "");
     let file_content = io::read(&resource);
 
     api::sleep(&api, &statics::LATENCY_COLLECTION).await?;
@@ -24,7 +24,7 @@ pub async fn get(
         Err(_) => {
             statics::ENVS.allow_externals_calls()?;
 
-            let url = format::url(&api, &qs);
+            let url = format::url(&api, qs);
             let res = fetch::get(&client, &url)
                 .await
                 .unwrap_or(serde_json::json!({}));
@@ -48,7 +48,7 @@ pub async fn post(
     let hash = utils::hash(&utils::HashValue(&payload));
 
     let qs = req.query_string();
-    let resource = format::resource(&api, &qs, &hash.to_string());
+    let resource = format::resource(&api, qs, &hash.to_string());
     let file_content = io::read(&resource);
 
     api::sleep(&api, &statics::LATENCY_COLLECTION).await?;
@@ -58,7 +58,7 @@ pub async fn post(
         Err(_) => {
             statics::ENVS.allow_externals_calls()?;
 
-            let url = format::url(&api, &qs);
+            let url = format::url(&api, qs);
             let res = fetch::post(&client, &url, &payload)
                 .await
                 .unwrap_or(serde_json::json!({}));

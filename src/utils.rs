@@ -4,14 +4,14 @@ use std::{
 };
 
 pub fn sep_hash(qs: &str) -> &str {
-    match qs == "" {
+    match qs.is_empty() {
         true => "",
         false => "-",
     }
 }
 
 pub fn sep_qs(qs: &str) -> &str {
-    match qs == "" {
+    match qs.is_empty() {
         true => "",
         false => "?",
     }

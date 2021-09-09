@@ -1,7 +1,5 @@
 use std::{collections::HashSet, iter::FromIterator};
 
-use log;
-
 use crate::{api, statics};
 
 pub fn latency_collection() {
@@ -12,7 +10,7 @@ pub fn latency_collection() {
             .collect::<Vec<String>>();
         let regex_map: Vec<_> = keys
             .iter()
-            .map(|v| api::key(&v).unwrap_or("None").to_owned())
+            .map(|v| api::key(v).unwrap_or("None").to_owned())
             .collect();
 
         if keys != regex_map {
