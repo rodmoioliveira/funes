@@ -7,14 +7,14 @@ pub async fn get(
     client: &web::Data<Client>,
     url: &str,
 ) -> Result<serde_json::Value, error::FunesError> {
-    Ok(client
+    client
         .get(url)
         .send()
         .await
         .map_err(error::FunesError::Request)?
         .json()
         .await
-        .map_err(error::FunesError::Request)?)
+        .map_err(error::FunesError::Request)
 }
 
 pub async fn post(
@@ -22,7 +22,7 @@ pub async fn post(
     url: &str,
     payload: &serde_json::Value,
 ) -> Result<serde_json::Value, error::FunesError> {
-    Ok(client
+    client
         .post(url)
         .json(payload)
         .send()
@@ -30,5 +30,5 @@ pub async fn post(
         .map_err(error::FunesError::Request)?
         .json()
         .await
-        .map_err(error::FunesError::Request)?)
+        .map_err(error::FunesError::Request)
 }
