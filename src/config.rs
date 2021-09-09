@@ -1,5 +1,6 @@
 use std::env;
 
+use dirs;
 use serde::Serialize;
 
 use crate::error;
@@ -34,7 +35,10 @@ impl Envs {
             latency_enable,
             localhost: env::var("FUNES_HOST").unwrap_or("0.0.0.0:8080".to_string()),
             log: env::var("FUNES_LOG").unwrap_or("funes,actix_web=info".to_string()),
-            mock_dir: env::var("FUNES_MOCK_DIR").unwrap_or("./mocks".to_string()),
+            mock_dir: env::var("FUNES_MOCK_DIR").unwrap_or(format!(
+                "{}/.mocks",
+                dirs::home_dir().unwrap().to_str().unwrap().to_string()
+            )),
         }
     }
 

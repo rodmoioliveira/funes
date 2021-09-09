@@ -100,7 +100,7 @@
 //! FUNES_APP=funes
 //! FUNES_HOST=0.0.0.0:8080
 //! FUNES_LOG=funes,actix_web=info
-//! FUNES_MOCK_DIR="./mocks"
+//! FUNES_MOCK_DIR=$HOME/.mocks
 //! ```
 //!
 //! # Examples
