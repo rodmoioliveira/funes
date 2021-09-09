@@ -1,6 +1,32 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [unreleased]
+
+### Bug Fixes
+
+- Fix pipeline badges ([b1a5d7d](https://github.com/rodmoioliveira/funes/commit/b1a5d7d4b51727889a6754e63f0266b5e9b38230))
+
+## [0.2.2](https://github.com/rodmoioliveira/funes/compare/0.2.1...0.2.2) - 2021-09-09
+
+[8a04042](https://github.com/rodmoioliveira/funes/commit/8a04042455a68e05f9847347493a743e5b20a816)...[d00684d](https://github.com/rodmoioliveira/funes/commit/d00684dd2a607a0259de5adcea7fd50ca10017e3)
+
+### Bug Fixes
+
+- Run cargo clippy --fix ([6392785](https://github.com/rodmoioliveira/funes/commit/63927851436bc040dad009a2e3f33a3eb6e07b21))
+- Fix cargo clippy ([94cc588](https://github.com/rodmoioliveira/funes/commit/94cc5881ea0c3438dbc844bb2bd318356088b359))
+
+### CI
+
+- Improve ci pipelines ([21faf3d](https://github.com/rodmoioliveira/funes/commit/21faf3dc93cf5dd66778f386528bae392d0a8ecb))
+- Rename ci file ([14ccd3a](https://github.com/rodmoioliveira/funes/commit/14ccd3abb861fdc863840c03bec2fef86748d017))
+
+### Miscellaneous Tasks
+
+- Update CHANGELOG ([af88155](https://github.com/rodmoioliveira/funes/commit/af8815513f65c53b2e4d06de62e2ae6c77575fa7))
+- Remove Ok(?) from fetch ([acd487f](https://github.com/rodmoioliveira/funes/commit/acd487fe435bbe6fb98e4d2213ce7373e4929cc0))
+- 0.2.2 ([d00684d](https://github.com/rodmoioliveira/funes/commit/d00684dd2a607a0259de5adcea7fd50ca10017e3))
+
 ## [0.2.1](https://github.com/rodmoioliveira/funes/compare/0.2.0...0.2.1) - 2021-09-09
 
 [b12fb1e](https://github.com/rodmoioliveira/funes/commit/b12fb1eb58ae1373057fcbfc1fad4735b0dbd862)...[8a04042](https://github.com/rodmoioliveira/funes/commit/8a04042455a68e05f9847347493a743e5b20a816)
