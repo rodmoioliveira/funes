@@ -34,7 +34,7 @@ impl Latency {
 pub type Collection = HashMap<String, Latency>;
 
 pub fn key(api: &str) -> Result<&str, error::FunesError> {
-    match statics::API_REGEX.find(&api) {
+    match statics::API_REGEX.find(api) {
         Some(v) => Ok(v.as_str()),
         None => Err(error::FunesError::LatencyCollectionError(api.to_string())),
     }

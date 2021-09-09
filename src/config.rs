@@ -1,6 +1,5 @@
 use std::env;
 
-use dirs;
 use serde::Serialize;
 
 use crate::error;
@@ -21,7 +20,7 @@ pub struct Envs {
 impl Envs {
     pub fn default() -> Self {
         let latency_collection = env::var("FUNES_LATENCY_COLLECTION").unwrap_or("".to_string());
-        let latency_enable = latency_collection != "";
+        let latency_enable = !latency_collection.is_empty();
 
         Envs {
             allow_externals: env::var("FUNES_ALLOW_EXTERNALS")

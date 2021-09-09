@@ -17,5 +17,5 @@ pub fn read(resource: &str) -> Result<String, std::io::Error> {
 
 pub fn write(resource: &str, file_content: String) -> Result<(), std::io::Error> {
     let filename = format::filename(resource);
-    Ok(fs::write(filename, file_content)?)
+    fs::write(filename, file_content)
 }
