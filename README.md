@@ -21,8 +21,8 @@ funes is a server to mock API responses. You might use it to:
 
 # Installation
 
-To install funes, you must have [rust and cargo
-installed](https://www.rust-lang.org/tools/install). Then you can run:
+To install funes, you must have [rust and
+cargo](https://www.rust-lang.org/tools/install) installed. Then you can run:
 
 ```sh
 cargo install funes
@@ -37,20 +37,18 @@ one:
 # terminal 1
 funes
 
-[2021-09-08T23:29:17Z INFO  funes::server] ENVS: Envs { allow_externals: true, api_regex: ".+", h_server: "funes", h_user_agent: "funes", latency_collection: "none", latency_enable: false, localhost: "0.0.0.0:8080", log: "funes,actix_web=info", mock_dir: "./mocks" }, LATENCY_COLLECTION: {}
+[2021-09-09T04:45:50Z INFO  funes::server] ENVS: Envs { allow_externals: true, api_regex: ".+", h_server: "funes", h_user_agent: "funes", latency_collection: "none", latency_enable: false, localhost: "0.0.0.0:8080", log: "funes,actix_web=info", mock_dir: "/Users/rodolfo.moi/.mocks" }, LATENCY_COLLECTION: {}
 ```
 
-To mock the requests of an API, call the endpoint `http://localhost:8080/{API}`.
-The first request will hit the API and then store the response:
+To mock the requests of an `{api}`, call the endpoint
+`http://localhost:8080/{api}`. The first request will hit the `{api}` and then
+store the response:
 
 ```sh
 # terminal 2
 curl http://localhost:8080/jsonplaceholder.typicode.com/todos/1
 
 # terminal 1
-[2021-09-08T23:42:27Z DEBUG funes::handlers] File not found! For api: jsonplaceholder.typicode.com/todos/1, resource: ./mocks/2573568215281262167.json
-[2021-09-08T23:42:27Z DEBUG funes::handlers] External get to: http://jsonplaceholder.typicode.com/todos/1
-[2021-09-08T23:42:27Z DEBUG funes::io] Write filename: ./mocks/2573568215281262167.json
 [2021-09-08T23:42:27Z INFO  actix_web::middleware::logger] 201 0.125973 GET /jsonplaceholder.typicode.com/todos/1 HTTP/1.1 curl/7.64.1 bytes:66
 ```
 
@@ -75,17 +73,14 @@ curl \
   -X POST 0.0.0.0:8080/jsonplaceholder.typicode.com/posts
 
 # terminal 1
-[2021-09-01T04:25:01Z DEBUG funes::handlers] File not found! For api: jsonplaceholder.typicode.com/posts, resource: ./mocks/768531861528487606.json, payload_post: {"body":"body","id":1,"title":"title","userId":1}
-[2021-09-01T04:25:01Z DEBUG funes::fetch] External post to: http://jsonplaceholder.typicode.com/posts
-[2021-09-01T04:25:02Z DEBUG funes::utils] Write filename: ./mocks/768531861528487606.json
 [2021-09-01T04:25:02Z INFO  actix_web::middleware::logger] 201 0.293888 POST /jsonplaceholder.typicode.com/posts HTTP/1.1 curl/7.64.1 bytes:51
 ```
 
-# Routes
+# Endpoints
 
-These are the default routes of a funes app:
+These are the endpoints of a funes app:
 
-- `localhost:8080/{api_to_mock}` - Like `localhost:8080/pokeapi.co/api/v2/pokemon/1`
+- `localhost:8080/{api}` - Like `localhost:8080/pokeapi.co/api/v2/pokemon/1`
 - `localhost:8080/mocks` - List of all saved mocks
 - `localhost:8080/health`
 - `localhost:8080/resource-status`
@@ -94,22 +89,26 @@ These are the default routes of a funes app:
 
 ```sh
 FUNES_ALLOW_EXTERNALS=true
+FUNES_API_REGEX=".+"
 FUNES_APP=funes
 FUNES_HOST=0.0.0.0:8080
+FUNES_LATENCY_COLLECTION=""
 FUNES_LOG=funes,actix_web=info
 FUNES_MOCK_DIR=$HOME/.mocks
 ```
 
 # Examples
 
-All examples can be found in the [examples](https://github.com/rodmoioliveira/funes/tree/main/examples) folder:
+All examples can be found in the
+[examples](https://github.com/rodmoioliveira/funes/tree/main/examples) folder:
 
 - [docker](https://github.com/rodmoioliveira/funes/tree/main/examples/docker)
 - [latency-collection](https://github.com/rodmoioliveira/funes/tree/main/examples/latency-collection)
 
 # Benchmarks
 
-Funes is really fast! Take a look:
+Funes is built on top of [actix](https://actix.rs/) and is blazing fast! Take a
+look:
 
 ```sh
 # https://github.com/wg/wrk
