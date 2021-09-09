@@ -11,8 +11,7 @@ pub fn mock_dir() -> std::io::Result<()> {
 
 pub fn read(resource: &str) -> Result<String, std::io::Error> {
     let filename = format::filename(resource);
-    let file_content = fs::read_to_string(filename)?;
-    Ok(file_content)
+    fs::read_to_string(filename)
 }
 
 pub fn write(resource: &str, file_content: String) -> Result<(), std::io::Error> {
