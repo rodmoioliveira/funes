@@ -1,6 +1,27 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.2.0](https://github.com/rodmoioliveira/funes/compare/0.1.11...0.2.0) - 2021-09-09
+
+[5915b85](https://github.com/rodmoioliveira/funes/commit/5915b8559236ec24456570b97c68416c25d4cb21)...[b12fb1e](https://github.com/rodmoioliveira/funes/commit/b12fb1eb58ae1373057fcbfc1fad4735b0dbd862)
+
+### Features
+
+- Implement latency_collection ([1b82c72](https://github.com/rodmoioliveira/funes/commit/1b82c72510321923a4387e790bcca925105728e3))
+
+### Miscellaneous Tasks
+
+- 0.2.0 ([b12fb1e](https://github.com/rodmoioliveira/funes/commit/b12fb1eb58ae1373057fcbfc1fad4735b0dbd862))
+
+## [0.1.11](https://github.com/rodmoioliveira/funes/compare/0.1.10...0.1.11) - 2021-09-03
+
+[d196756](https://github.com/rodmoioliveira/funes/commit/d1967560337ef19f8295021512845544d748843f)...[5915b85](https://github.com/rodmoioliveira/funes/commit/5915b8559236ec24456570b97c68416c25d4cb21)
+
+### Miscellaneous Tasks
+
+- Update CHANGELOG ([6239c8c](https://github.com/rodmoioliveira/funes/commit/6239c8c9a22da8c0c11d659b79e1d47360d8e4ef))
+- 0.1.11 ([5915b85](https://github.com/rodmoioliveira/funes/commit/5915b8559236ec24456570b97c68416c25d4cb21))
+
 ## [0.1.10](https://github.com/rodmoioliveira/funes/compare/0.1.9...0.1.10) - 2021-09-03
 
 [7b611ce](https://github.com/rodmoioliveira/funes/commit/7b611ce5a4940837c31faa411873f19cf03545c4)...[d196756](https://github.com/rodmoioliveira/funes/commit/d1967560337ef19f8295021512845544d748843f)
