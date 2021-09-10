@@ -40,7 +40,7 @@ pub fn key(api: &str) -> Result<&str, error::FunesError> {
     }
 }
 
-fn map_range(from_range: (f32, f32), to_range: (f32, f32), s: f32) -> f32 {
+pub fn map_range(from_range: (f32, f32), to_range: (f32, f32), s: f32) -> f32 {
     to_range.0 + (s - from_range.0) * (to_range.1 - to_range.0) / (from_range.1 - from_range.0)
 }
 

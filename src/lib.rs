@@ -126,7 +126,7 @@
 //! Transfer/sec:      4.02GB
 //! ```
 
-mod api;
+pub mod api;
 mod config;
 mod error;
 mod fetch;
