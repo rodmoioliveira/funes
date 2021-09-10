@@ -1,11 +1,28 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [unreleased]
+## [0.2.3](https://github.com/rodmoioliveira/funes/compare/0.2.2...0.2.3) - 2021-09-10
+
+[d00684d](https://github.com/rodmoioliveira/funes/commit/d00684dd2a607a0259de5adcea7fd50ca10017e3)...[49b9a7f](https://github.com/rodmoioliveira/funes/commit/49b9a7f684a215f430243b9a6c44ef03574b2536)
 
 ### Bug Fixes
 
 - Fix pipeline badges ([b1a5d7d](https://github.com/rodmoioliveira/funes/commit/b1a5d7d4b51727889a6754e63f0266b5e9b38230))
+
+### CI
+
+- Add recipes in Makefile ([4f8343f](https://github.com/rodmoioliveira/funes/commit/4f8343fe2e7d09278576960225c33e185b507fd0))
+
+### Features
+
+- Add fxhash crate ([5fcb131](https://github.com/rodmoioliveira/funes/commit/5fcb1311517de49d38f0b5eda487f608a1314d87))
+- Add benchmark for api::map_range() ([be3e2fb](https://github.com/rodmoioliveira/funes/commit/be3e2fb4415a1089c46b1ec9a33148385c402f6a))
+
+### Miscellaneous Tasks
+
+- Update CHANGELOG ([44b02c2](https://github.com/rodmoioliveira/funes/commit/44b02c24392c4903e192db488f330fe89ee1a69a))
+- Remove Ok() from io::read() ([7f89972](https://github.com/rodmoioliveira/funes/commit/7f8997212dffc4ee14a4d5aece56fa22c1c112ff))
+- 0.2.3 ([49b9a7f](https://github.com/rodmoioliveira/funes/commit/49b9a7f684a215f430243b9a6c44ef03574b2536))
 
 ## [0.2.2](https://github.com/rodmoioliveira/funes/compare/0.2.1...0.2.2) - 2021-09-09
 
