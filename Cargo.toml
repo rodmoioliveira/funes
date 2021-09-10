@@ -25,6 +25,7 @@ derive_more = "0.99.14"
 dirs = "3.0.2"
 dotenv = "0.15.0"
 env_logger = "0.8.4"
+fxhash = "0.2.1"
 lazy_static = "1.4.0"
 log = "0.4.14"
 mime = "0.3.16"
@@ -34,6 +35,13 @@ regex = "1.5.4"
 reqwest = { version = "0.11.4", features = ["json"] }
 serde = { version = "1.0.126", features = ["derive"] }
 serde_json = "1.0.64"
+
+[dev-dependencies]
+criterion = { version = "0.3", features = ["html_reports"] }
+
+[[bench]]
+name = "my_benchmark"
+harness = false
 
 [[bin]]
 bench = false
