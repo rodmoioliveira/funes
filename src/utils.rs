@@ -18,7 +18,7 @@ pub fn sep_qs(qs: &str) -> &str {
 }
 
 pub fn hash<T: Hash>(t: &T) -> u64 {
-    let mut s = DefaultHasher::new();
+    let mut s = fxhash::FxHasher::default();
     t.hash(&mut s);
     s.finish()
 }
@@ -29,8 +29,6 @@ pub struct HashValue<'a>(pub &'a serde_json::Value);
 impl Eq for HashValue<'_> {}
 
 impl Hash for HashValue<'_> {
-    /// Implements the [`Hash`][Hash] trait to
-    /// [`serde_json::Value`][serde_json::Value]
     fn hash<H: Hasher>(&self, state: &mut H) {
         use serde_json::Value::*;
         match self.0 {

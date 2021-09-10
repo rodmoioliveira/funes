@@ -134,7 +134,7 @@ mod format;
 mod handlers;
 mod io;
 mod statics;
-mod utils;
+pub mod utils;
 mod validate;
 
 pub mod server;
