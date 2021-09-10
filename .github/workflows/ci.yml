@@ -34,6 +34,7 @@ jobs:
       - uses: Vampire/setup-wsl@v1
         if: ${{ matrix.os == 'windows-latest' }}
       - run: cargo test
+      - uses: codecov/codecov-action@v2
 
   clippy:
     name: Lint with clippy
