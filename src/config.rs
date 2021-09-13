@@ -36,7 +36,7 @@ impl Envs {
             localhost: env::var("FUNES_HOST").unwrap_or_else(|_| "0.0.0.0:8080".to_string()),
             log: env::var("FUNES_LOG").unwrap_or_else(|_| "funes,actix_web=info".to_string()),
             mock_dir: env::var("FUNES_MOCK_DIR").unwrap_or(format!(
-                "{}/.mocks",
+                "{}/.funes",
                 dirs::home_dir().unwrap().to_str().unwrap().to_string()
             )),
         }

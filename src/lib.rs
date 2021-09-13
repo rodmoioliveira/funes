@@ -39,7 +39,7 @@
 //! # terminal 1
 //! funes
 //!
-//! [2021-09-09T04:45:50Z INFO  funes::server] ENVS: Envs { allow_externals: true, api_regex: ".+", h_server: "funes", h_user_agent: "funes", latency_collection: "none", latency_enable: false, localhost: "0.0.0.0:8080", log: "funes,actix_web=info", mock_dir: "/Users/rodolfo.moi/.mocks" }, LATENCY_COLLECTION: {}
+//! [2021-09-09T04:45:50Z INFO  funes::server] ENVS: Envs { allow_externals: true, api_regex: ".+", h_server: "funes", h_user_agent: "funes", latency_collection: "none", latency_enable: false, localhost: "0.0.0.0:8080", log: "funes,actix_web=info", mock_dir: "/Users/rodolfo.moi/.funes" }, LATENCY_COLLECTION: {}
 //! ```
 //!
 //! To mock the requests of an `{api}`, call the endpoint
@@ -96,7 +96,7 @@
 //! FUNES_HOST=0.0.0.0:8080
 //! FUNES_LATENCY_COLLECTION=""
 //! FUNES_LOG=funes,actix_web=info
-//! FUNES_MOCK_DIR=$HOME/.mocks
+//! FUNES_MOCK_DIR=$HOME/.funes
 //! ```
 //!
 //! # Examples
