@@ -11,6 +11,8 @@ lazy_static! {
 
     pub static ref API_REGEX: Regex = Regex::new(&ENVS.api_regex).unwrap();
 
+    pub static ref FILE_CONTENT_SEP: String = String::from("\n---\n");
+
     pub static ref CLIENT: reqwest::Client = Client::builder()
         .user_agent(&statics::ENVS.h_user_agent)
         .timeout(time::Duration::from_millis(2000))

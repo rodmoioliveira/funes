@@ -20,19 +20,15 @@ pub async fn get(
     api::sleep(&api, &statics::LATENCY_COLLECTION).await?;
 
     match file_content {
-        Ok(value) => Ok(HttpResponse::Ok().body(value)),
+        Ok((status, body)) => Ok(HttpResponse::build(status).json(body)),
         Err(_) => {
             statics::ENVS.allow_externals_calls()?;
 
             let url = format::url(&api, qs);
-            let res = fetch::get(&client, &url)
-                .await
-                .unwrap_or_else(|_| serde_json::json!({}));
-            let file_content = serde_json::to_string(&res).unwrap_or_else(|_| "".to_string());
+            let res: reqwest::Response = fetch::get(&client, &url).await?;
 
-            io::write(&resource, file_content)?;
-
-            Ok(HttpResponse::Created().json(res))
+            let (status, body) = io::write(&resource, res).await?;
+            Ok(HttpResponse::build(status).json(body))
         }
     }
 }
@@ -54,19 +50,15 @@ pub async fn post(
     api::sleep(&api, &statics::LATENCY_COLLECTION).await?;
 
     match file_content {
-        Ok(value) => Ok(HttpResponse::Ok().body(value)),
+        Ok((status, body)) => Ok(HttpResponse::build(status).json(body)),
         Err(_) => {
             statics::ENVS.allow_externals_calls()?;
 
             let url = format::url(&api, qs);
-            let res = fetch::post(&client, &url, &payload)
-                .await
-                .unwrap_or_else(|_| serde_json::json!({}));
-            let file_content = serde_json::to_string(&res).unwrap_or_else(|_| "".to_string());
+            let res: reqwest::Response = fetch::post(&client, &url, &payload).await?;
 
-            io::write(&resource, file_content)?;
-
-            Ok(HttpResponse::Created().json(res))
+            let (status, body) = io::write(&resource, res).await?;
+            Ok(HttpResponse::build(status).json(body))
         }
     }
 }
