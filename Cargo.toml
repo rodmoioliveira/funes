@@ -5,14 +5,15 @@ authors = ["Rodolfo Mói de Oliveira <rodmoi.oliveira@gmail.com>"]
 edition = "2018"
 readme = "README.md"
 description = """
-Funes is a server to mock API responses.
+Funes is a server to mock HTTP responses.
 """
 license = "MIT"
 repository = "https://github.com/rodmoioliveira/funes"
-documentation = "https://github.com/rodmoioliveira/funes"
+documentation = "https://docs.rs/funes"
 homepage = "https://github.com/rodmoioliveira/funes"
 keywords = ["http", "mock", "test", "cache"]
 categories = ["caching", "development-tools::testing", "web-programming::http-server"]
+exclude = ["/.github/*", "/cliff.toml"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
