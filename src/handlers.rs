@@ -1,5 +1,5 @@
 use actix_web::{web, HttpRequest, HttpResponse, Responder};
-use reqwest::Client;
+use reqwest::{Client, Method};
 
 use crate::{api, error, fetch, format, io, statics, utils};
 
@@ -27,7 +27,7 @@ pub async fn get(
             let url = format::url(&api, qs);
             let res: reqwest::Response = fetch::get(&client, &url).await?;
 
-            let (status, body) = io::write(&resource, res).await?;
+            let (status, body) = io::write(&resource, res, Method::GET, None).await?;
             Ok(HttpResponse::build(status).json(body))
         }
     }
@@ -57,7 +57,7 @@ pub async fn post(
             let url = format::url(&api, qs);
             let res: reqwest::Response = fetch::post(&client, &url, &payload).await?;
 
-            let (status, body) = io::write(&resource, res).await?;
+            let (status, body) = io::write(&resource, res, Method::POST, Some(&payload)).await?;
             Ok(HttpResponse::build(status).json(body))
         }
     }
