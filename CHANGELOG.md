@@ -1,6 +1,48 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.2.6](https://github.com/rodmoioliveira/funes/compare/0.2.5...0.2.6) - 2021-09-22
+
+[6eb659e](https://github.com/rodmoioliveira/funes/commit/6eb659e10c44368275314286f253a9df77dd7ae4)...[e59f20c](https://github.com/rodmoioliveira/funes/commit/e59f20caef2b47e3ef1a7005954f051600c87fe6)
+
+### Documentation
+
+- Update docs ([5eeae7e](https://github.com/rodmoioliveira/funes/commit/5eeae7e709fccaa96a91cb7e563809046294da74))
+
+### Features
+
+- Add METHOD and PAYLOAD to mocks ([4b6eb72](https://github.com/rodmoioliveira/funes/commit/4b6eb72b567147921bf9e9503d784af0cf6905f4))
+
+### Miscellaneous Tasks
+
+- 0.2.6 ([e59f20c](https://github.com/rodmoioliveira/funes/commit/e59f20caef2b47e3ef1a7005954f051600c87fe6))
+
+### Testing
+
+- Add new test in handlers ([09c6cce](https://github.com/rodmoioliveira/funes/commit/09c6cceb91388b2769810e33551860ca05fb5c16))
+
+## [0.2.5](https://github.com/rodmoioliveira/funes/compare/0.2.4...0.2.5) - 2021-09-14
+
+[a5dd6f8](https://github.com/rodmoioliveira/funes/commit/a5dd6f88e7300cb3a50d38680459c6e3960c6588)...[6eb659e](https://github.com/rodmoioliveira/funes/commit/6eb659e10c44368275314286f253a9df77dd7ae4)
+
+### Features
+
+- Return status code from mock response ([16a3e37](https://github.com/rodmoioliveira/funes/commit/16a3e37974c3e438898f4234b611731f7f92bbd7))
+
+### Miscellaneous Tasks
+
+- 0.2.5 ([6eb659e](https://github.com/rodmoioliveira/funes/commit/6eb659e10c44368275314286f253a9df77dd7ae4))
+
+## [0.2.4](https://github.com/rodmoioliveira/funes/compare/0.2.3...0.2.4) - 2021-09-14
+
+[49b9a7f](https://github.com/rodmoioliveira/funes/commit/49b9a7f684a215f430243b9a6c44ef03574b2536)...[a5dd6f8](https://github.com/rodmoioliveira/funes/commit/a5dd6f88e7300cb3a50d38680459c6e3960c6588)
+
+### Miscellaneous Tasks
+
+- Update CHANGELOG ([ea44237](https://github.com/rodmoioliveira/funes/commit/ea44237b1c16b8b1d345a23d95a6647a847b3166))
+- Alter FUNES_MOCK_DIR to .funes ([ab04f50](https://github.com/rodmoioliveira/funes/commit/ab04f504487d9733b3083e24b2c988919bb55088))
+- 0.2.4 ([a5dd6f8](https://github.com/rodmoioliveira/funes/commit/a5dd6f88e7300cb3a50d38680459c6e3960c6588))
+
 ## [0.2.3](https://github.com/rodmoioliveira/funes/compare/0.2.2...0.2.3) - 2021-09-10
 
 [d00684d](https://github.com/rodmoioliveira/funes/commit/d00684dd2a607a0259de5adcea7fd50ca10017e3)...[49b9a7f](https://github.com/rodmoioliveira/funes/commit/49b9a7f684a215f430243b9a6c44ef03574b2536)
