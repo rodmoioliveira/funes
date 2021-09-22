@@ -132,14 +132,20 @@ mod tests {
                 )
         });
 
-        assert!(
-            srv.get("jsonplaceholder.typicode.com/todos/1")
-                .send()
-                .await
-                .unwrap()
-                .status()
-                .is_success(),
-        );
+        let mut res = srv
+            .get("jsonplaceholder.typicode.com/todos/1")
+            .send()
+            .await
+            .unwrap();
+        assert!(res.status().is_success(),);
+
+        let data = r#"{"completed":false,"id":1,"title":"delectus aut autem","userId":1}"#;
+        let json: serde_json::Value = serde_json::from_str(data).unwrap();
+        let res_json: serde_json::Value = serde_json::from_str(
+            &String::from_utf8(res.body().limit(20_000_000).await.unwrap().to_vec()).unwrap(),
+        )
+        .unwrap();
+        assert_eq!(res_json, json);
     }
 
     #[actix_rt::test]
