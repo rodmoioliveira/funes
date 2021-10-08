@@ -133,6 +133,7 @@ mod fetch;
 mod format;
 mod handlers;
 mod io;
+mod mock;
 mod statics;
 pub mod utils;
 mod validate;

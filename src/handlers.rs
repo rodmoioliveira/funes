@@ -20,7 +20,7 @@ pub async fn get(
     api::sleep(&api, &statics::LATENCY_COLLECTION).await?;
 
     match file_content {
-        Ok((status, body)) => Ok(HttpResponse::build(status).json(body)),
+        Ok(mock) => Ok(HttpResponse::Ok().json(mock.body)),
         Err(_) => {
             statics::ENVS.allow_externals_calls()?;
 
@@ -50,7 +50,7 @@ pub async fn post(
     api::sleep(&api, &statics::LATENCY_COLLECTION).await?;
 
     match file_content {
-        Ok((status, body)) => Ok(HttpResponse::build(status).json(body)),
+        Ok(mock) => Ok(HttpResponse::Ok().json(mock.body)),
         Err(_) => {
             statics::ENVS.allow_externals_calls()?;
 
