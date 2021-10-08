@@ -1,6 +1,22 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.2.7](https://github.com/rodmoioliveira/funes/compare/0.2.6...0.2.7) - 2021-10-08
+
+[e59f20c](https://github.com/rodmoioliveira/funes/commit/e59f20caef2b47e3ef1a7005954f051600c87fe6)...[4a19cbb](https://github.com/rodmoioliveira/funes/commit/4a19cbbac0caaf483726447e31ca71fe2a7f4cd9)
+
+### Bug Fixes
+
+- Revert to version 0.2.4 ([2020bc5](https://github.com/rodmoioliveira/funes/commit/2020bc58230212e0341e97d0a6c4a94b1c292bf1))
+
+### Documentation
+
+- Update changelog ([17439e2](https://github.com/rodmoioliveira/funes/commit/17439e2fec7bb594a8d3a5131865b8638a1022cf))
+
+### Miscellaneous Tasks
+
+- 0.2.7 ([4a19cbb](https://github.com/rodmoioliveira/funes/commit/4a19cbbac0caaf483726447e31ca71fe2a7f4cd9))
+
 ## [0.2.6](https://github.com/rodmoioliveira/funes/compare/0.2.5...0.2.6) - 2021-09-22
 
 [6eb659e](https://github.com/rodmoioliveira/funes/commit/6eb659e10c44368275314286f253a9df77dd7ae4)...[e59f20c](https://github.com/rodmoioliveira/funes/commit/e59f20caef2b47e3ef1a7005954f051600c87fe6)
