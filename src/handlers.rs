@@ -1,5 +1,5 @@
 use actix_web::{web, HttpRequest, HttpResponse, Responder};
-use reqwest::{Client, Method};
+use reqwest::Client;
 
 use crate::{api, error, fetch, format, io, statics, utils};
 
@@ -20,15 +20,19 @@ pub async fn get(
     api::sleep(&api, &statics::LATENCY_COLLECTION).await?;
 
     match file_content {
-        Ok((status, body)) => Ok(HttpResponse::build(status).json(body)),
+        Ok(value) => Ok(HttpResponse::Ok().body(value)),
         Err(_) => {
             statics::ENVS.allow_externals_calls()?;
 
             let url = format::url(&api, qs);
-            let res: reqwest::Response = fetch::get(&client, &url).await?;
+            let res = fetch::get(&client, &url)
+                .await
+                .unwrap_or_else(|_| serde_json::json!({}));
+            let file_content = serde_json::to_string(&res).unwrap_or_else(|_| "".to_string());
 
-            let (status, body) = io::write(&resource, res, Method::GET, None).await?;
-            Ok(HttpResponse::build(status).json(body))
+            io::write(&resource, file_content)?;
+
+            Ok(HttpResponse::Created().json(res))
         }
     }
 }
@@ -50,15 +54,19 @@ pub async fn post(
     api::sleep(&api, &statics::LATENCY_COLLECTION).await?;
 
     match file_content {
-        Ok((status, body)) => Ok(HttpResponse::build(status).json(body)),
+        Ok(value) => Ok(HttpResponse::Ok().body(value)),
         Err(_) => {
             statics::ENVS.allow_externals_calls()?;
 
             let url = format::url(&api, qs);
-            let res: reqwest::Response = fetch::post(&client, &url, &payload).await?;
+            let res = fetch::post(&client, &url, &payload)
+                .await
+                .unwrap_or_else(|_| serde_json::json!({}));
+            let file_content = serde_json::to_string(&res).unwrap_or_else(|_| "".to_string());
 
-            let (status, body) = io::write(&resource, res, Method::POST, Some(&payload)).await?;
-            Ok(HttpResponse::build(status).json(body))
+            io::write(&resource, file_content)?;
+
+            Ok(HttpResponse::Created().json(res))
         }
     }
 }
