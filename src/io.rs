@@ -9,32 +9,12 @@ pub fn mock_dir() -> std::io::Result<()> {
     Ok(())
 }
 
-pub fn read(resource: &str) -> Result<(reqwest::StatusCode, serde_json::Value), std::io::Error> {
+pub fn read(resource: &str) -> Result<String, std::io::Error> {
     let filename = format::filename(resource);
-    let file_content = fs::read_to_string(&filename)?;
-    let content: Vec<&str> = file_content.split(&*statics::FILE_CONTENT_SEP).collect();
-    let status =
-        reqwest::StatusCode::from_u16(content[3].replace("Status: ", "").parse::<u16>().unwrap())
-            .unwrap();
-    let body: serde_json::Value = serde_json::from_str(&content[6].replace("Body: ", ""))?;
-
-    Ok((status, body))
+    fs::read_to_string(filename)
 }
 
-pub async fn write(
-    resource: &str,
-    res: reqwest::Response,
-    method: reqwest::Method,
-    payload: Option<&serde_json::Value>,
-) -> Result<(reqwest::StatusCode, serde_json::Value), std::io::Error> {
+pub fn write(resource: &str, file_content: String) -> Result<(), std::io::Error> {
     let filename = format::filename(resource);
-    let version = res.version();
-    let headers = res.headers().clone();
-    let status = res.status();
-    let body: serde_json::Value = res.json().await.unwrap_or_else(|_| serde_json::json!({}));
-
-    let file_content = format::content(method, resource, payload, version, status, headers, &body);
-    fs::write(filename, file_content)?;
-
-    Ok((status, body))
+    fs::write(filename, file_content)
 }
