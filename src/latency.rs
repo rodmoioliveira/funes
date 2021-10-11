@@ -21,20 +21,6 @@ pub struct Distribution {
     pub max: f32,
 }
 
-impl Distribution {
-    pub fn default() -> Self {
-        Distribution {
-            min: 0.0,
-            p50: 0.0,
-            p75: 0.0,
-            p90: 0.0,
-            p95: 0.0,
-            p99: 0.0,
-            max: 0.0,
-        }
-    }
-}
-
 pub type Collection = HashMap<String, Distribution>;
 
 pub fn key(api: &str) -> Result<&str, error::FunesError> {

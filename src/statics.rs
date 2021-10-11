@@ -18,8 +18,6 @@ lazy_static! {
     #[derive(Debug)]
     pub static ref ENVS: config::Envs = config::Envs::default();
 
-    pub static ref API_DEFAULT_LATENCY: latency::Distribution = latency::Distribution::default();
-
     #[derive(Debug)]
     pub static ref LATENCY_COLLECTION: latency::Collection = match statics::ENVS.latency_enable {
         true => {
