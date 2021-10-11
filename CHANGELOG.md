@@ -1,6 +1,23 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.2.8](https://github.com/rodmoioliveira/funes/compare/0.2.7...0.2.8) - 2021-10-11
+
+[4a19cbb](https://github.com/rodmoioliveira/funes/commit/4a19cbbac0caaf483726447e31ca71fe2a7f4cd9)...[4b15083](https://github.com/rodmoioliveira/funes/commit/4b1508304c8c1d2cfde9ccfb65c1d99a7a117668)
+
+### Bug Fixes
+
+- Fix docker example ([95ed561](https://github.com/rodmoioliveira/funes/commit/95ed561eea2726a1d43273246c3a2fe63249fe6e))
+
+### Documentation
+
+- Update CHANGELOG ([3a58626](https://github.com/rodmoioliveira/funes/commit/3a58626a3500576c7cba4fbda761a1992566691a))
+
+### Refactor
+
+- Refactor api namespace ([e4e2c94](https://github.com/rodmoioliveira/funes/commit/e4e2c949320689109892bc30724c33fc9de86b73))
+- Remove dead code ([4b15083](https://github.com/rodmoioliveira/funes/commit/4b1508304c8c1d2cfde9ccfb65c1d99a7a117668))
+
 ## [0.2.7](https://github.com/rodmoioliveira/funes/compare/0.2.6...0.2.7) - 2021-10-08
 
 [e59f20c](https://github.com/rodmoioliveira/funes/commit/e59f20caef2b47e3ef1a7005954f051600c87fe6)...[4a19cbb](https://github.com/rodmoioliveira/funes/commit/4a19cbbac0caaf483726447e31ca71fe2a7f4cd9)
