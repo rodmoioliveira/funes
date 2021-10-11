@@ -1,9 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [0.2.8](https://github.com/rodmoioliveira/funes/compare/0.2.7...0.2.8) - 2021-10-11
-
-[4a19cbb](https://github.com/rodmoioliveira/funes/commit/4a19cbbac0caaf483726447e31ca71fe2a7f4cd9)...[4b15083](https://github.com/rodmoioliveira/funes/commit/4b1508304c8c1d2cfde9ccfb65c1d99a7a117668)
+## [unreleased]
 
 ### Bug Fixes
 
@@ -12,6 +10,7 @@ All notable changes to this project will be documented in this file.
 ### Documentation
 
 - Update CHANGELOG ([3a58626](https://github.com/rodmoioliveira/funes/commit/3a58626a3500576c7cba4fbda761a1992566691a))
+- Update CHANGELOG ([17c345a](https://github.com/rodmoioliveira/funes/commit/17c345a7936aa27c86c804642b4bcb328294694c))
 
 ### Refactor
 
