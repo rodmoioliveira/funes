@@ -6,14 +6,14 @@ use dotenv::dotenv;
 use log;
 use mime;
 
-use crate::{handlers, io, statics, validate};
+use crate::{handlers, io, latency, statics};
 
 pub async fn new() -> std::io::Result<()> {
     env::set_var("RUST_LOG", &statics::ENVS.log);
     dotenv().ok();
     env_logger::init();
     io::mock_dir()?;
-    validate::latency_collection();
+    latency::validate();
 
     let localhost = &statics::ENVS.localhost;
 

@@ -1,13 +1,17 @@
-use std::{collections::HashMap, time};
+use std::{
+    collections::{HashMap, HashSet},
+    iter::FromIterator,
+    time,
+};
 
 use async_std::task;
 use rand::Rng;
 use serde::Deserialize;
 
-use crate::{api, error, statics};
+use crate::{error, statics};
 
 #[derive(Deserialize, Debug, Clone)]
-pub struct Latency {
+pub struct Distribution {
     pub min: f32,
     pub p50: f32,
     pub p75: f32,
@@ -17,9 +21,9 @@ pub struct Latency {
     pub max: f32,
 }
 
-impl Latency {
+impl Distribution {
     pub fn default() -> Self {
-        Latency {
+        Distribution {
             min: 0.0,
             p50: 0.0,
             p75: 0.0,
@@ -31,7 +35,7 @@ impl Latency {
     }
 }
 
-pub type Collection = HashMap<String, Latency>;
+pub type Collection = HashMap<String, Distribution>;
 
 pub fn key(api: &str) -> Result<&str, error::FunesError> {
     match statics::API_REGEX.find(api) {
@@ -44,7 +48,7 @@ pub fn map_range(from_range: (f32, f32), to_range: (f32, f32), s: f32) -> f32 {
     to_range.0 + (s - from_range.0) * (to_range.1 - to_range.0) / (from_range.1 - from_range.0)
 }
 
-fn latency(api: &str, collection: &api::Collection) -> Result<time::Duration, error::FunesError> {
+fn latency(api: &str, collection: &Collection) -> Result<time::Duration, error::FunesError> {
     let key = key(api)?;
     let latency = collection.get(key).unwrap();
     let mut rng = rand::thread_rng();
@@ -63,10 +67,40 @@ fn latency(api: &str, collection: &api::Collection) -> Result<time::Duration, er
     Ok(time::Duration::from_secs_f32(api_res_time))
 }
 
-pub async fn sleep(api: &str, collection: &api::Collection) -> Result<(), error::FunesError> {
+pub async fn sleep(api: &str, collection: &Collection) -> Result<(), error::FunesError> {
     if statics::ENVS.latency_enable {
-        let latency = api::latency(api, collection);
+        let latency = latency(api, collection);
         task::sleep(latency?).await;
     }
     Ok(())
+}
+
+pub fn validate() {
+    if statics::ENVS.latency_enable {
+        let keys = statics::LATENCY_COLLECTION
+            .keys()
+            .cloned()
+            .collect::<Vec<String>>();
+        let regex_map: Vec<_> = keys
+            .iter()
+            .map(|v| key(v).unwrap_or("None").to_owned())
+            .collect();
+
+        if keys != regex_map {
+            let keys_set: HashSet<String> = HashSet::from_iter(keys.iter().cloned());
+            let regex_map_set: HashSet<String> = regex_map.iter().clone().cloned().collect();
+            let diff: HashSet<_> = keys_set.difference(&regex_map_set).collect();
+
+            log::error!(
+                "FUNES_LATENCY_COLLECTION keys:\n {:#?}\n\nDiffer from \
+                 regex_map:\n{:#?}\n\nBecause FUNES_API_REGEX: {} doesn't match all keys.\nThe \
+                 offenders are the following:\n\n{:?}\n",
+                keys_set,
+                regex_map_set,
+                statics::ENVS.api_regex,
+                diff,
+            );
+            panic!();
+        }
+    }
 }

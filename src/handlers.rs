@@ -1,7 +1,7 @@
 use actix_web::{web, HttpRequest, HttpResponse, Responder};
 use reqwest::Client;
 
-use crate::{api, error, fetch, format, io, statics, utils};
+use crate::{error, fetch, format, io, latency, statics, utils};
 
 pub async fn get(
     api: web::Path<String>,
@@ -17,7 +17,7 @@ pub async fn get(
     let resource = format::resource(&api, qs, "");
     let file_content = io::read(&resource);
 
-    api::sleep(&api, &statics::LATENCY_COLLECTION).await?;
+    latency::sleep(&api, &statics::LATENCY_COLLECTION).await?;
 
     match file_content {
         Ok(value) => Ok(HttpResponse::Ok().body(value)),
@@ -51,7 +51,7 @@ pub async fn post(
     let resource = format::resource(&api, qs, &hash.to_string());
     let file_content = io::read(&resource);
 
-    api::sleep(&api, &statics::LATENCY_COLLECTION).await?;
+    latency::sleep(&api, &statics::LATENCY_COLLECTION).await?;
 
     match file_content {
         Ok(value) => Ok(HttpResponse::Ok().body(value)),
