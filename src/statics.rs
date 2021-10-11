@@ -4,11 +4,9 @@ use lazy_static::lazy_static;
 use regex::Regex;
 use reqwest::Client;
 
-use crate::{api, config, statics};
+use crate::{config, latency, statics};
 
 lazy_static! {
-    pub static ref API_DEFAULT_LATENCY: api::Latency = api::Latency::default();
-
     pub static ref API_REGEX: Regex = Regex::new(&ENVS.api_regex).unwrap();
 
     pub static ref CLIENT: reqwest::Client = Client::builder()
@@ -20,8 +18,10 @@ lazy_static! {
     #[derive(Debug)]
     pub static ref ENVS: config::Envs = config::Envs::default();
 
+    pub static ref API_DEFAULT_LATENCY: latency::Distribution = latency::Distribution::default();
+
     #[derive(Debug)]
-    pub static ref LATENCY_COLLECTION: api::Collection = match statics::ENVS.latency_enable {
+    pub static ref LATENCY_COLLECTION: latency::Collection = match statics::ENVS.latency_enable {
         true => {
             serde_json::from_str(&fs::read_to_string(&statics::ENVS.latency_collection).unwrap())
                 .unwrap()

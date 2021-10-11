@@ -231,15 +231,13 @@
 //! Transfer/sec:    380.54MB
 //! ```
 
-pub mod api;
 mod config;
 mod error;
 mod fetch;
 mod format;
 mod handlers;
 mod io;
-mod statics;
-pub mod utils;
-mod validate;
-
+mod latency;
 pub mod server;
+mod statics;
+mod utils;
