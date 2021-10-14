@@ -6,7 +6,7 @@ use dotenv::dotenv;
 use log;
 use mime;
 
-use crate::{handlers, io, latency, statics};
+use crate::{config, handlers, io, latency, statics};
 
 pub async fn new() -> std::io::Result<()> {
     env::set_var("RUST_LOG", &statics::ENVS.log);
@@ -18,8 +18,9 @@ pub async fn new() -> std::io::Result<()> {
     let localhost = &statics::ENVS.localhost;
 
     log::info!(
-        "ENVS: {:?}, LATENCY_COLLECTION: {:?}",
+        "ENVS: {:?}, {}: {:?}",
         *statics::ENVS,
+        config::FUNES_LATENCY_COLLECTION,
         *statics::LATENCY_COLLECTION
     );
 
