@@ -1,6 +1,6 @@
 use std::{fs, path::Path};
 
-use crate::{format, statics};
+use crate::{error, format, statics};
 
 pub fn mock_dir() -> std::io::Result<()> {
     if !Path::new(&statics::ENVS.mock_dir).exists() {
@@ -9,12 +9,12 @@ pub fn mock_dir() -> std::io::Result<()> {
     Ok(())
 }
 
-pub fn read(resource: &str) -> Result<String, std::io::Error> {
+pub fn read(resource: &str) -> Result<String, error::FunesError> {
     let filename = format::filename(resource);
-    fs::read_to_string(filename)
+    fs::read_to_string(filename).map_err(error::FunesError::Std)
 }
 
-pub fn write(resource: &str, file_content: String) -> Result<(), std::io::Error> {
+pub fn write(resource: &str, file_content: String) -> Result<(), error::FunesError> {
     let filename = format::filename(resource);
-    fs::write(filename, file_content)
+    fs::write(filename, file_content).map_err(error::FunesError::Std)
 }
