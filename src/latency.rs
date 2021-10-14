@@ -8,7 +8,7 @@ use async_std::task;
 use rand::Rng;
 use serde::Deserialize;
 
-use crate::{error, statics};
+use crate::{config, error, statics};
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct Distribution {
@@ -78,15 +78,15 @@ pub fn validate() {
             let diff: HashSet<_> = keys_set.difference(&regex_map_set).collect();
 
             log::error!(
-                "FUNES_LATENCY_COLLECTION keys:\n {:#?}\n\nDiffer from \
-                 regex_map:\n{:#?}\n\nBecause FUNES_API_REGEX: {} doesn't match all keys.\nThe \
-                 offenders are the following:\n\n{:?}\n",
-                keys_set,
-                regex_map_set,
+                "\n\n{}: \"{}\"\nDoesn`t fully match all keys from {}: {:#?}\n\nUnmatched keys \
+                 are:\n {:#?}\n\n",
+                config::FUNES_API_REGEX,
                 statics::ENVS.api_regex,
+                config::FUNES_LATENCY_COLLECTION,
+                keys_set,
                 diff,
             );
-            panic!();
+            panic!("Unmatched keys in {}", config::FUNES_LATENCY_COLLECTION);
         }
     }
 }
