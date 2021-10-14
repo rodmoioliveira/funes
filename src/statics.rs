@@ -1,4 +1,4 @@
-use std::{collections::HashMap, fs, time};
+use std::{collections::HashMap, fs};
 
 use lazy_static::lazy_static;
 use regex::Regex;
@@ -11,7 +11,6 @@ lazy_static! {
 
     pub static ref CLIENT: reqwest::Client = Client::builder()
         .user_agent(&ENVS.h_user_agent)
-        .timeout(time::Duration::from_millis(2000))
         .build()
         .unwrap();
 
