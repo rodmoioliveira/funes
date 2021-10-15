@@ -10,6 +10,8 @@ use serde::Deserialize;
 
 use crate::{config, error, statics};
 
+// For now, this is just a magic number to adjust the sleep time for
+// async_std::task::sleep.
 static ASYNC_TASK_SLEEP_MODIFIER: u64 = 87;
 
 #[derive(Deserialize, Debug, Clone)]
@@ -23,7 +25,22 @@ pub struct Distribution {
     pub max: u64,
 }
 
-pub type Collection = HashMap<String, Distribution>;
+pub type Latencies = HashMap<String, Distribution>;
+
+#[derive(Deserialize, Debug, Clone)]
+pub struct Collection {
+    pub regex: String,
+    pub latencies: Latencies,
+}
+
+impl Collection {
+    pub fn default() -> Self {
+        Collection {
+            regex: r".+".to_string(),
+            latencies: HashMap::new(),
+        }
+    }
+}
 
 pub fn key(api: &str) -> Result<&str, error::FunesError> {
     match statics::API_REGEX.find(api) {
@@ -34,7 +51,7 @@ pub fn key(api: &str) -> Result<&str, error::FunesError> {
 
 fn latency(api: &str, collection: &Collection) -> Result<time::Duration, error::FunesError> {
     let key = key(api)?;
-    let latency = collection.get(key).unwrap();
+    let latency = collection.latencies.get(key).unwrap();
     let mut rng = rand::thread_rng();
     let random = rng.gen_range(0..=100);
 
@@ -64,6 +81,7 @@ pub async fn sleep(api: &str, collection: &Collection) -> Result<(), error::Fune
 pub fn validate() {
     if statics::ENVS.latency_enable {
         let keys = statics::LATENCY_COLLECTION
+            .latencies
             .keys()
             .cloned()
             .collect::<Vec<String>>();
@@ -78,10 +96,9 @@ pub fn validate() {
             let diff: HashSet<_> = keys_set.difference(&regex_map_set).collect();
 
             log::error!(
-                "\n\n{}: \"{}\"\nDoesn`t fully match all keys from {}: {:#?}\n\nUnmatched keys \
+                "\n\nREGEX: \"{}\"\nDoesn`t fully match all keys from {}: {:#?}\n\nUnmatched keys \
                  are:\n {:#?}\n\n",
-                config::FUNES_API_REGEX,
-                statics::ENVS.api_regex,
+                statics::LATENCY_COLLECTION.regex,
                 config::FUNES_LATENCY_COLLECTION,
                 keys_set,
                 diff,

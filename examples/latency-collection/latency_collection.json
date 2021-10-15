@@ -1,47 +1,50 @@
 {
-  "jsonplaceholder.typicode.com/posts": {
-    "min": 13,
-    "p50": 199,
-    "p75": 248,
-    "p90": 343,
-    "p95": 591,
-    "p99": 2384,
-    "max": 3000
-  },
-  "jsonplaceholder.typicode.com/comments": {
-    "min": 13,
-    "p50": 199,
-    "p75": 248,
-    "p90": 343,
-    "p95": 591,
-    "p99": 2384,
-    "max": 3000
-  },
-  "jsonplaceholder.typicode.com/albums": {
-    "min": 13,
-    "p50": 199,
-    "p75": 248,
-    "p90": 343,
-    "p95": 591,
-    "p99": 2384,
-    "max": 3000
-  },
-  "jsonplaceholder.typicode.com/todos": {
-    "min": 13,
-    "p50": 199,
-    "p75": 248,
-    "p90": 343,
-    "p95": 591,
-    "p99": 2384,
-    "max": 3000
-  },
-  "jsonplaceholder.typicode.com/users": {
-    "min": 13,
-    "p50": 199,
-    "p75": 248,
-    "p90": 343,
-    "p95": 591,
-    "p99": 2384,
-    "max": 3000
+  "regex": "jsonplaceholder\\.typicode\\.com/\\w+",
+  "latencies": {
+    "jsonplaceholder.typicode.com/posts": {
+      "min": 13,
+      "p50": 199,
+      "p75": 248,
+      "p90": 343,
+      "p95": 591,
+      "p99": 2384,
+      "max": 3000
+    },
+    "jsonplaceholder.typicode.com/comments": {
+      "min": 13,
+      "p50": 199,
+      "p75": 248,
+      "p90": 343,
+      "p95": 591,
+      "p99": 2384,
+      "max": 3000
+    },
+    "jsonplaceholder.typicode.com/albums": {
+      "min": 13,
+      "p50": 199,
+      "p75": 248,
+      "p90": 343,
+      "p95": 591,
+      "p99": 2384,
+      "max": 3000
+    },
+    "jsonplaceholder.typicode.com/todos": {
+      "min": 13,
+      "p50": 199,
+      "p75": 248,
+      "p90": 343,
+      "p95": 591,
+      "p99": 2384,
+      "max": 3000
+    },
+    "jsonplaceholder.typicode.com/users": {
+      "min": 13,
+      "p50": 199,
+      "p75": 248,
+      "p90": 343,
+      "p95": 591,
+      "p99": 2384,
+      "max": 3000
+    }
   }
 }

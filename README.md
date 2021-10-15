@@ -89,10 +89,8 @@ These are the endpoints of a funes app:
 
 ```sh
 FUNES_ALLOW_EXTERNALS=true
-FUNES_API_REGEX=".+"
 FUNES_APP=funes
 FUNES_HOST=0.0.0.0:8080
-FUNES_LATENCY_COLLECTION=""
 FUNES_LOG=funes,actix_web=info
 FUNES_MOCK_DIR=$HOME/.funes
 ```
