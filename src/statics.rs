@@ -1,4 +1,4 @@
-use std::{collections::HashMap, fs};
+use std::fs;
 
 use lazy_static::lazy_static;
 use regex::Regex;
@@ -7,7 +7,7 @@ use reqwest::Client;
 use crate::{config, latency};
 
 lazy_static! {
-    pub static ref API_REGEX: Regex = Regex::new(&ENVS.api_regex).unwrap();
+    pub static ref API_REGEX: Regex = Regex::new(&LATENCY_COLLECTION.regex).unwrap();
 
     pub static ref CLIENT: reqwest::Client = Client::builder()
         .user_agent(&ENVS.h_user_agent)
@@ -23,6 +23,6 @@ lazy_static! {
             serde_json::from_str(&fs::read_to_string(&ENVS.latency_collection).unwrap())
                 .unwrap()
         }
-        false => HashMap::new(),
+        false => latency::Collection::default()
     };
 }

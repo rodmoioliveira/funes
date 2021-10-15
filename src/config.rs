@@ -5,7 +5,6 @@ use serde::Serialize;
 use crate::error;
 
 pub static FUNES_ALLOW_EXTERNALS: &str = "FUNES_ALLOW_EXTERNALS";
-pub static FUNES_API_REGEX: &str = "FUNES_API_REGEX";
 pub static FUNES_APP: &str = "FUNES_APP";
 pub static FUNES_HOST: &str = "FUNES_HOST";
 pub static FUNES_LATENCY_COLLECTION: &str = "FUNES_LATENCY_COLLECTION";
@@ -15,7 +14,6 @@ pub static FUNES_MOCK_DIR: &str = "FUNES_MOCK_DIR";
 #[derive(Serialize, Clone, Debug)]
 pub struct Envs {
     pub allow_externals: bool,
-    pub api_regex: String,
     pub h_server: String,
     pub h_user_agent: String,
     pub latency_collection: String,
@@ -36,7 +34,6 @@ impl Envs {
                 .unwrap_or_else(|_| "true".to_string())
                 .parse::<bool>()
                 .unwrap(),
-            api_regex: env::var(FUNES_API_REGEX).unwrap_or_else(|_| r".+".to_string()),
             h_server: env::var(FUNES_APP).unwrap_or_else(|_| "funes".to_string()),
             h_user_agent: env::var(FUNES_APP).unwrap_or_else(|_| "funes".to_string()),
             latency_collection,
