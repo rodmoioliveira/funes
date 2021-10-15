@@ -10,15 +10,17 @@ use serde::Deserialize;
 
 use crate::{config, error, statics};
 
+static ASYNC_TASK_SLEEP_MODIFIER: u64 = 87;
+
 #[derive(Deserialize, Debug, Clone)]
 pub struct Distribution {
-    pub min: f32,
-    pub p50: f32,
-    pub p75: f32,
-    pub p90: f32,
-    pub p95: f32,
-    pub p99: f32,
-    pub max: f32,
+    pub min: u64,
+    pub p50: u64,
+    pub p75: u64,
+    pub p90: u64,
+    pub p95: u64,
+    pub p99: u64,
+    pub max: u64,
 }
 
 pub type Collection = HashMap<String, Distribution>;
@@ -30,10 +32,6 @@ pub fn key(api: &str) -> Result<&str, error::FunesError> {
     }
 }
 
-pub fn map_range(from_range: (f32, f32), to_range: (f32, f32), s: f32) -> f32 {
-    to_range.0 + (s - from_range.0) * (to_range.1 - to_range.0) / (from_range.1 - from_range.0)
-}
-
 fn latency(api: &str, collection: &Collection) -> Result<time::Duration, error::FunesError> {
     let key = key(api)?;
     let latency = collection.get(key).unwrap();
@@ -41,16 +39,18 @@ fn latency(api: &str, collection: &Collection) -> Result<time::Duration, error::
     let random = rng.gen_range(0..=100);
 
     let api_res_time = match random {
-        0..=50 => map_range((0.0, 50.0), (latency.min, latency.p50), random as f32),
-        51..=75 => map_range((51.0, 75.0), (latency.p50, latency.p75), random as f32),
-        76..=90 => map_range((76.0, 90.0), (latency.p75, latency.p90), random as f32),
-        91..=95 => map_range((91.0, 95.0), (latency.p90, latency.p95), random as f32),
-        96..=99 => map_range((96.0, 99.0), (latency.p95, latency.p99), random as f32),
+        0..=50 => latency.p50,
+        51..=75 => latency.p75,
+        76..=90 => latency.p90,
+        91..=95 => latency.p95,
+        96..=99 => latency.p99,
         100 => latency.max,
-        _ => 0.0,
+        _ => latency.min,
     };
 
-    Ok(time::Duration::from_secs_f32(api_res_time))
+    Ok(time::Duration::from_millis(
+        api_res_time / ASYNC_TASK_SLEEP_MODIFIER,
+    ))
 }
 
 pub async fn sleep(api: &str, collection: &Collection) -> Result<(), error::FunesError> {
