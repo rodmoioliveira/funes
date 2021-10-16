@@ -10,10 +10,6 @@ use serde::Deserialize;
 
 use crate::{config, error, statics};
 
-// For now, this is just a magic number to adjust the sleep time for
-// async_std::task::sleep.
-static ASYNC_TASK_SLEEP_MODIFIER: u64 = 87;
-
 #[derive(Deserialize, Debug, Clone)]
 pub struct Distribution {
     pub min: u64,
@@ -66,7 +62,7 @@ fn latency(api: &str, collection: &Collection) -> Result<time::Duration, error::
     };
 
     Ok(time::Duration::from_millis(
-        api_res_time / ASYNC_TASK_SLEEP_MODIFIER,
+        api_res_time / *statics::ASYNC_TASK_SLEEP_MODIFIER,
     ))
 }
 
