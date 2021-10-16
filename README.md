@@ -14,14 +14,14 @@
 [![Changelog](https://camo.githubusercontent.com/4d89fc2186d69bdbb2c6ea6cb54ab16915be5e5e0b63a393e87a75741f1baa8c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6368616e67656c6f672d4348414e47454c4f472e6d642d253233453035373335)](https://github.com/rodmoioliveira/funes/blob/main/CHANGELOG.md)
 [![Code of Conduct](https://img.shields.io/badge/code-of%20conduct-blue.svg)](https://github.com/rodmoioliveira/funes/blob/main/CODE_OF_CONDUCT.md)
 
-funes is a server to mock HTTP responses. You might use it to:
+`funes` is a server to mock HTTP responses. You might use it to:
 
 - test applications without hitting production resources;
 - create integrations tests for your applications;
 
 # Installation
 
-To install funes, you must have [rust and
+To install `funes`, you must have [rust and
 cargo](https://www.rust-lang.org/tools/install) installed. Then you can run:
 
 ```sh
@@ -30,14 +30,27 @@ cargo install funes
 
 # Usage
 
-Now you can run your funes server in one terminal and make requests from another
+Now you can run your `funes` server in one terminal and make requests from another
 one:
 
 ```sh
 # terminal 1
 funes
 
-[2021-09-09T04:45:50Z INFO  funes::server] ENVS: Envs { allow_externals: true, api_regex: ".+", h_server: "funes", h_user_agent: "funes", latency_collection: "none", latency_enable: false, localhost: "0.0.0.0:8080", log: "funes,actix_web=info", mock_dir: "/Users/rodolfo.moi/.funes" }, LATENCY_COLLECTION: {}
+ENVS: Envs {
+  allow_externals: true,
+  h_server: "funes",
+  h_user_agent: "funes",
+  latency_collection: "",
+  latency_enable: false,
+  localhost: "0.0.0.0:8080",
+  log: "funes,actix_web=info",
+  mock_dir: "/Users/rodolfo.moi/.funes"
+},
+FUNES_LATENCY_COLLECTION: Collection {
+  regex: ".+",
+  latencies: {}
+}
 ```
 
 To mock the requests of an `{api}`, call the endpoint
@@ -49,7 +62,7 @@ store the response:
 curl http://localhost:8080/jsonplaceholder.typicode.com/todos/1
 
 # terminal 1
-[2021-09-08T23:42:27Z INFO  actix_web::middleware::logger] 201 0.125973 GET /jsonplaceholder.typicode.com/todos/1 HTTP/1.1 curl/7.64.1 bytes:66
+201 0.125973 GET /jsonplaceholder.typicode.com/todos/1 HTTP/1.1 curl/7.64.1 bytes:66
 ```
 
 The second request and all the subsequent ones will be served from the stored
@@ -60,7 +73,7 @@ response:
 curl http://localhost:8080/jsonplaceholder.typicode.com/todos/1
 
 # terminal 1
-[2021-09-08T23:43:06Z INFO  actix_web::middleware::logger] 200 0.000330 GET /jsonplaceholder.typicode.com/todos/1 HTTP/1.1 curl/7.64.1 bytes:66
+200 0.000330 GET /jsonplaceholder.typicode.com/todos/1 HTTP/1.1 curl/7.64.1 bytes:66
 ```
 
 Posts are supported:
@@ -73,17 +86,17 @@ curl \
   -X POST 0.0.0.0:8080/jsonplaceholder.typicode.com/posts
 
 # terminal 1
-[2021-09-01T04:25:02Z INFO  actix_web::middleware::logger] 201 0.293888 POST /jsonplaceholder.typicode.com/posts HTTP/1.1 curl/7.64.1 bytes:51
+201 0.293888 POST /jsonplaceholder.typicode.com/posts HTTP/1.1 curl/7.64.1 bytes:51
 ```
 
 # Endpoints
 
-These are the endpoints of a funes app:
+These are the endpoints of a `funes` app:
 
-- `localhost:8080/{api}` - Like `localhost:8080/pokeapi.co/api/v2/pokemon/1`
-- `localhost:8080/mocks` - List of all saved mocks
-- `localhost:8080/health`
-- `localhost:8080/resource-status`
+- `/{api}` - Like `0.0.0.0:8080/pokeapi.co/api/v2/pokemon/1`
+- `/mocks` - List of all saved mocks
+- `/health`
+- `/resource-status`
 
 # Default Envs
 
