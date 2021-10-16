@@ -71,7 +71,7 @@ The schema for this file should be:
       "p99": u64_milliseconds,
       "max": u64_milliseconds
     },
-    "regex_match_key": {...},
+    "key_to_be_matched_by_regex": {...},
     ...
   }
 }
