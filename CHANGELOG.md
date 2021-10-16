@@ -1,7 +1,48 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [unreleased]
+## [0.3.0](https://github.com/rodmoioliveira/funes/compare/0.2.9...0.3.0) - 2021-10-16
+
+[485143e](https://github.com/rodmoioliveira/funes/commit/485143e3d6c32e2754c9ed2e86cdbb303c418b77)...[a289bac](https://github.com/rodmoioliveira/funes/commit/a289bac82085d2e4739f9b980003e9d55cd9d182)
+
+### Documentation
+
+- Fix README for examples/latency-collection ([fe053cb](https://github.com/rodmoioliveira/funes/commit/fe053cb1edd667de4e5d750786e2c03291946857))
+- Improve README ([96ec95b](https://github.com/rodmoioliveira/funes/commit/96ec95b270b0eb1d3bace9fab506785ef8090914))
+
+### Features
+
+- Add env ASYNC_TASK_SLEEP_MODIFIER ([dd7a059](https://github.com/rodmoioliveira/funes/commit/dd7a0591e0ecf8f3817b642044ec9a3034a79d00))
+
+### Miscellaneous Tasks
+
+- 0.3.0 ([a289bac](https://github.com/rodmoioliveira/funes/commit/a289bac82085d2e4739f9b980003e9d55cd9d182))
+
+### Refactor
+
+- Map std::io::Error to error::FunesError ([e00bcc7](https://github.com/rodmoioliveira/funes/commit/e00bcc7cf2037ec7865da98506a3aef286c91e16))
+- Add statics for FUNES_ envs ([f53563e](https://github.com/rodmoioliveira/funes/commit/f53563e4904e1c3e3c87a7331cfe1afa9bc3fe51))
+- Return format! directly format::resource() ([7d66e49](https://github.com/rodmoioliveira/funes/commit/7d66e49f340861c75d27020fcc1c60777dfe5669))
+- Add config::FUNES_LATENCY_COLLECTION in server.rs ([98aa494](https://github.com/rodmoioliveira/funes/commit/98aa494bcbd35d4e3238d682baa5e3b76c87a2e1))
+- Add ASYNC_TASK_SLEEP_MODIFIER ([a258123](https://github.com/rodmoioliveira/funes/commit/a258123d85d7b622bb048ea0613d03e35bb9d66f))
+- Remove FUNES_API_REGEX env ([c3e2e03](https://github.com/rodmoioliveira/funes/commit/c3e2e03a8388825c2b9faa926d0d441e96cbd052))
+
+## [0.2.9](https://github.com/rodmoioliveira/funes/compare/0.2.8...0.2.9) - 2021-10-14
+
+[6972b8b](https://github.com/rodmoioliveira/funes/commit/6972b8b47b9e4bfc7095cccf0d2dd1635699465f)...[485143e](https://github.com/rodmoioliveira/funes/commit/485143e3d6c32e2754c9ed2e86cdbb303c418b77)
+
+### Bug Fixes
+
+- Remore statics autoimport ([4af8fa2](https://github.com/rodmoioliveira/funes/commit/4af8fa2ffacef474ba306e8aab0fde8c75e3a943))
+
+### Miscellaneous Tasks
+
+- Remove reqwest::Client timeout ([027a538](https://github.com/rodmoioliveira/funes/commit/027a5383ad1b1db720c76e0478a81559a5e0c028))
+- 0.2.9 ([485143e](https://github.com/rodmoioliveira/funes/commit/485143e3d6c32e2754c9ed2e86cdbb303c418b77))
+
+## [0.2.8](https://github.com/rodmoioliveira/funes/compare/0.2.7...0.2.8) - 2021-10-11
+
+[4a19cbb](https://github.com/rodmoioliveira/funes/commit/4a19cbbac0caaf483726447e31ca71fe2a7f4cd9)...[6972b8b](https://github.com/rodmoioliveira/funes/commit/6972b8b47b9e4bfc7095cccf0d2dd1635699465f)
 
 ### Bug Fixes
 
@@ -11,6 +52,7 @@ All notable changes to this project will be documented in this file.
 
 - Update CHANGELOG ([3a58626](https://github.com/rodmoioliveira/funes/commit/3a58626a3500576c7cba4fbda761a1992566691a))
 - Update CHANGELOG ([17c345a](https://github.com/rodmoioliveira/funes/commit/17c345a7936aa27c86c804642b4bcb328294694c))
+- Update CHANGELOG ([6972b8b](https://github.com/rodmoioliveira/funes/commit/6972b8b47b9e4bfc7095cccf0d2dd1635699465f))
 
 ### Refactor
 
