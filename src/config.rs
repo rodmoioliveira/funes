@@ -42,7 +42,7 @@ impl Envs {
             log: env::var(FUNES_LOG).unwrap_or_else(|_| "funes,actix_web=info".to_string()),
             mock_dir: env::var(FUNES_MOCK_DIR).unwrap_or(format!(
                 "{}/.funes",
-                dirs::home_dir().unwrap().to_str().unwrap().to_string()
+                dirs::home_dir().unwrap().to_str().unwrap()
             )),
         }
     }
